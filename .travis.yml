@@ -1,0 +1,20 @@
+ language: node_js
+ node_js: node
+ cache:
+   directories:
+     - node_modules
+ script:
+   - npm test
+ env:
+   - CI=true
+
+ before_deploy:
+   - npm install netlify-cli -g
+   - npm run build
+
+ deploy:
+   provider: script
+   script: netlify deploy -s 98529d1d-f0c1-4a4c-8722-3216269319de -t 3790b85835bf726d332fa52b657cea041ea5fdd7b6add68507932f79813856b6 -p ./build
+   skip_cleanup: true
+   on:
+     branch: master
