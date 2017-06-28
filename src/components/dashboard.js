@@ -3,9 +3,9 @@ import {connect} from 'react-redux';
 
 export function Dashboard(props) {
 	// let formattedDbItems;
-	const formattedDbItems = props.dbItem.forEach(item => 
+	const formattedDbItems = props.dbItem.map((item, index) => (
 		// formattedDbItems += 
-			<div className="js-hospitalizations-item">
+			<div className="js-hospitalizations-item" key={index}>
 				<h2>{item.patient}</h2>
 				<h3>Latest Status</h3>
 				<p>{item.latestUpdate}</p>
@@ -16,7 +16,7 @@ export function Dashboard(props) {
 				<button className="edit">Edit</button>
 				<button className="delete">Delete</button>
 			</div>
-	);
+	));
 	return (
 		<main>
 			<h1>Hospitalizations</h1>
