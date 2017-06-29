@@ -1,10 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 
 export function Dashboard(props) {
-	// let formattedDbItems;
 	const formattedDbItems = props.dbItem.map((item, index) => (
-		// formattedDbItems += 
 			<div className="js-hospitalizations-item" key={index}>
 				<h2>{item.patient}</h2>
 				<h3>Latest Status</h3>
@@ -20,6 +19,7 @@ export function Dashboard(props) {
 	return (
 		<main>
 			<h1>Hospitalizations</h1>
+			<Link to="/new">Create New</Link>
 			<div className="js-hospitalizations">
 				{formattedDbItems}
 			</div>
