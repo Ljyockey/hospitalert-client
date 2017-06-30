@@ -23,7 +23,7 @@ export class NewHosp extends React.Component {
 		return (   
 		 <main>
       
-      <section>
+      <section className="new-hosp">
         <form onSubmit={e => this.submitHosp(e)}>
           <label for="patient">Patient</label>
           <input id="patient" type="text" ref={input => 

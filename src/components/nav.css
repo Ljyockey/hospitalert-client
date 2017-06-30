@@ -1,0 +1,38 @@
+body {
+	font-family: 'Nunito', sans-serif;
+	font-size: 16px;
+}
+
+.navigation a, .navigation a:hover, .navigation a:focus {
+	color: white;
+}
+
+nav {
+	position: relative;
+}
+
+nav {
+	background-color: #00b1bd;
+	border: none;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	z-index: 10;
+}
+
+nav ul {
+	text-align: left;
+}
+
+.navbar-default .navbar-nav>li>a {
+	color: #f8f8f8;
+}
+
+.navbar-brand {
+	display: inline-block;
+	font-family: 'Monoton', cursive;
+}
+
+.navbar-default .navbar-brand {
+	color: #f8f8f8;
+}

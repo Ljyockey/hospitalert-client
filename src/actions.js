@@ -15,3 +15,10 @@ export const formToggle = (index) => ({
 	type: FORM_TOGGLE,
 	index
 })
+
+export const UPDATE_ITEM = 'UPDATE_ITEM';
+export const updateItem = (object, index) => ({
+	type: UPDATE_ITEM,
+	object,
+	index
+})

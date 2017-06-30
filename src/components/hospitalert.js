@@ -5,6 +5,8 @@ import Landing from './landing';
 import Dashboard from './dashboard';
 import NewHosp from './new-hosp';
 
+import './main.css';
+
 export default function Hospitalert() {
 	return (
 		<Router>

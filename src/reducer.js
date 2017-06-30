@@ -46,22 +46,43 @@ export const hospReducer = (state=initialState, action) => {
 			return state;
 
 		case 'ADD_NEW_HOSP':
-		state = Object.assign({}, state, {
-			mockDb: [...state.mockDb, action.hosp]
-		});
-		return state;
+			state = Object.assign({}, state, {
+				mockDb: [...state.mockDb, action.hosp]
+			});
+			return state;
 
 		case 'FORM_TOGGLE':
-		const findItemToToggle = state.mockDb.filter(function(item, index) {
-			if (index === action.index) {
-				item.isAForm = !item.isAForm
-			}
-			return item; 
-		})
-		state = Object.assign({}, state, {
-			mockDb: findItemToToggle
-		});
-		return state;
+			const findItemToToggle = state.mockDb.filter(function(item, index) {
+				if (index === action.index) {
+					item.isAForm = !item.isAForm
+				}
+				return item; 
+			})
+			state = Object.assign({}, state, {
+				mockDb: findItemToToggle
+			});
+			return state;
+
+		case 'UPDATE_ITEM':
+			const possibleUpdates = ['condition', 'conscious', 'latestUpdate'];
+			const targetDbItem = state.mockDb[action.index];
+			possibleUpdates.forEach(field => {
+				if(field in action.object) {
+					targetDbItem[field] = action.object[field];
+				}
+			})
+			const newDb = state.mockDb.filter(function(item, index) {
+				if (index === action.index) {
+					return targetDbItem;
+				}
+				else {
+					return item;
+				}
+			});
+			state = Object.assign({}, state, {
+				mockDb: newDb
+			})
+			return state;
 
 		default:
 			return state;
