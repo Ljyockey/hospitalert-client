@@ -3,35 +3,68 @@ import * as actions from './actions';
 const initialState = {
 	isLoggedIn: true,
 	mockDb: [	{
-		id: 1,
 		patient: "Grandpa Joe",
 		condition: "heart attack",
 		conscious: true,
-		latestUpdate: "Waiting to meet with doctor for results of EKG"
+		latestUpdate: "Waiting to meet with doctor for results of EKG",
+		isAForm: false
 		},
 		{
-		id: 2,
 		patient: "Mom",
 		condition: "car accident",
 		conscious: true,
-		latestUpdate: "X-Ray confrimed broken leg. Waiting for cast. Should be released soon."
+		latestUpdate: "X-Ray confrimed broken leg. Waiting for cast. Should be released soon.",
+		isAForm: false
 		},
 		{
-		id: 3,
 		patient: "Ricky",
 		condition: "seizure",
 		conscious: true,
-		latestUpdate: "Ricky was just taken to another room for an MRI"
+		latestUpdate: "Ricky was just taken to another room for an MRI",
+		isAForm: false
 		},
 		{
-		id: 4,
 		patient: "Sally",
 		condition: "hip surgery",
 		conscious: false,
-		latestUpdate: "Doctor says surgery was a success and that Sally should be waking up any minute now"
+		latestUpdate: "Doctor says surgery was a success and that Sally should be waking up any minute now",
+		isAForm: false
 	}]
 };
 
 export const hospReducer = (state=initialState, action) => {
-	return state;
+
+	switch(action.type) {
+
+		case 'DELETE_HOSPITALIZATION':
+			const editedDb = state.mockDb.filter(function(item, index) {
+				return index !== action.index
+			})
+			state = Object.assign({}, state, {
+				mockDb: editedDb
+			});
+			return state;
+
+		case 'ADD_NEW_HOSP':
+		state = Object.assign({}, state, {
+			mockDb: [...state.mockDb, action.hosp]
+		});
+		return state;
+
+		case 'FORM_TOGGLE':
+		const findItemToToggle = state.mockDb.filter(function(item, index) {
+			if (index === action.index) {
+				item.isAForm = !item.isAForm
+			}
+			return item; 
+		})
+		state = Object.assign({}, state, {
+			mockDb: findItemToToggle
+		});
+		return state;
+
+		default:
+			return state;
+
+	}
 }
