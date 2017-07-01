@@ -12,7 +12,7 @@ nav {
 }
 
 nav {
-	background-color: #00b1bd;
+	background-color: #00767e;
 	border: none;
 	width: 100%;
 	position: fixed;
@@ -22,17 +22,4 @@ nav {
 
 nav ul {
 	text-align: left;
-}
-
-.navbar-default .navbar-nav>li>a {
-	color: #f8f8f8;
-}
-
-.navbar-brand {
-	display: inline-block;
-	font-family: 'Monoton', cursive;
-}
-
-.navbar-default .navbar-brand {
-	color: #f8f8f8;
 }

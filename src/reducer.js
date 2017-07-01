@@ -1,7 +1,6 @@
-import * as actions from './actions';
-
 const initialState = {
 	isLoggedIn: true,
+	showNewHosp: false,
 	mockDb: [	{
 		patient: "Grandpa Joe",
 		condition: "heart attack",
@@ -83,6 +82,13 @@ export const hospReducer = (state=initialState, action) => {
 				mockDb: newDb
 			})
 			return state;
+
+			case 'NEW_HOSP_TOGGLE':
+				const newHospToggle = !state.showNewHosp;
+				state = Object.assign({}, state, {
+					showNewHosp: newHospToggle
+				})
+				return state;
 
 		default:
 			return state;

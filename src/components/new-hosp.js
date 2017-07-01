@@ -1,7 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
-import {BrowserRouter as Redirect} from 'react-router-dom';
 
 import {addNewHosp} from '../actions';
 
@@ -16,13 +14,12 @@ export class NewHosp extends React.Component {
       latestUpdate: this.status.value
     }
     this.props.dispatch(addNewHosp(newH));
+    this.props.history.push('/dashboard');
   }
 
 	render() {
 
 		return (   
-		 <main>
-      
       <section className="new-hosp">
         <form onSubmit={e => this.submitHosp(e)}>
           <label for="patient">Patient</label>
@@ -46,8 +43,6 @@ export class NewHosp extends React.Component {
           
         </form>
       </section>
-      
-    </main>
     )
 	}
 }

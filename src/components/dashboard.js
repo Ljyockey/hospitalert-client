@@ -1,10 +1,18 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
 
-import {deleteHospitalization, formToggle, updateItem} from '../actions';
+import NewHosp from './new-hosp';
+
+import {deleteHospitalization, formToggle, updateItem, newHospToggle} from '../actions';
+
+import './dashboard.css';
 
 export class Dashboard extends React.Component {
+
+	toggleNewHosp(event) {
+		event.preventDefault();
+		this.props.dispatch(newHospToggle());
+	}
 
 	formToggleHandler(event, index) {
 		event.preventDefault();
@@ -34,6 +42,8 @@ export class Dashboard extends React.Component {
 	}
 
 	render() {
+
+		const newHosp = (this.props.showNewHosp ? <NewHosp /> : undefined);
 
 		const formattedDbItems = this.props.dbItem.map((item, index) => (
 			item.isAForm ?
@@ -74,9 +84,12 @@ export class Dashboard extends React.Component {
 
 		return (
 			<main>
-				<div className="hospitalizations">
-					<h1>Hospitalizations</h1>
-					<Link to="/new">Create New</Link>
+				<h1>Hospitalizations</h1>
+				<div className="create-new-container">
+				<button onClick={e => this.toggleNewHosp(e)} className="create-new">
+					{this.props.createOrHide}
+				</button>
+				{newHosp}
 				</div>
 				<div className="js-hospitalizations">
 					{formattedDbItems}
@@ -87,7 +100,9 @@ export class Dashboard extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-	dbItem: state.mockDb
+	dbItem: state.mockDb,
+  	showNewHosp: state.showNewHosp,
+  	createOrHide: state.showNewHosp ? 'hide' : 'Create New'
 });
 
 export default connect(mapStateToProps)(Dashboard);

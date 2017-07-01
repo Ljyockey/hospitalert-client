@@ -22,3 +22,8 @@ export const updateItem = (object, index) => ({
 	object,
 	index
 })
+
+export const NEW_HOSP_TOGGLE = 'NEW_HOSP_TOGGLE';
+export const newHospToggle = () => ({
+	type: NEW_HOSP_TOGGLE
+})
