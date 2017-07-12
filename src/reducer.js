@@ -6,7 +6,9 @@ const initialState = {
 	isLoggedIn: true,
 	showNewHosp: false,
 	hospitalizations: [],
-	friendsSearchResults: []
+	friendsSearchResults: [],
+	pendingFriends: [],
+	activeFriends: []
 };
 
 //reducers
@@ -91,6 +93,19 @@ export const hospReducer = (state=initialState, action) => {
 			case 'SEARCH_FRIENDS':
 				state = Object.assign({}, state, {
 					friendsSearchResults: action.results
+				})
+				return state;
+
+			case 'SORT_FRIENDS':
+				const myPendingFriends = action.friends.filter((obj) => {
+					return (obj.status === 'pending');
+				});
+				const myActiveFriends = action.friends.filter((obj) => {
+					return (obj.status === 'active');
+				});
+				state = Object.assign({}, state, {
+					pendingFriends: myPendingFriends,
+					activeFriends: myActiveFriends
 				})
 				return state;
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {searchFriends} from '../actions';
+import {searchFriends, sortFriends} from '../actions';
 
 import './friends.css';
 
@@ -8,6 +8,11 @@ const axios = require('axios');
 const {API_BASE_URL} = require('../config');
 
 export class Friends extends React.Component {
+
+    componentWillMount() {
+        axios.get(`${API_BASE_URL}/friends`)
+        .then(res => this.props.dispatch(sortFriends(res.data.friends)))
+    }
 
     searchFriends(event) {
         event.preventDefault()
@@ -20,10 +25,26 @@ export class Friends extends React.Component {
 
     render() {
         
-        const searchResults = (this.props.friendsResults) ?
+        const searchResults = (this.props.friendsResults.length > 0) ?
         this.props.friendsResults.map((item => {
             <li key={item.id}>${item.name}</li>
         })) : undefined;
+
+        const pendingFriends = (this.props.pending.length > 0) ?
+            (this.props.pending.map((item) => {
+                <li key={item.id}>${item.id}</li>
+            }))
+        :
+            <p>No pending requests</p>;
+
+        const activeFriends = (this.props.active.length > 0) ?
+            (this.props.active.map((item) => {
+                <li key={item.id}>${item.id}</li>
+            }))
+        :
+            <p>You don't have any friends yet. Use the search bar to find friends.</p>;
+
+            
 
         return (
             <main>
@@ -53,11 +74,15 @@ export class Friends extends React.Component {
 
                 <section className="friend-requests">
                     <h2>Friend Requests</h2>
-                    {/*create variable for requests*/}
+                    <ul>
+                        {pendingFriends}
+                    </ul>
                 </section>
                 <section className="pending-requests">
                     <h2>Sent Requests</h2>
-                    {/*create variable for pending requests*/}
+                    <ul>
+                        {pendingFriends}
+                    </ul>
                 </section>
             </main>
         );
@@ -65,7 +90,9 @@ export class Friends extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    friendsResults: state.friendsSearchResults
+    friendsResults: state.friendsSearchResults,
+    pending: state.pendingFriends,
+    active: state.activeFriends
 });
 
 export default connect(mapStateToProps)(Friends);

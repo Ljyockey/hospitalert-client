@@ -50,3 +50,9 @@ export const searchFriends = (results) => ({
 	type: SEARCH_FRIENDS,
 	results
 })
+
+export const SORT_FRIENDS = 'SORT_FRIENDS';
+export const sortFriends = (friends) => ({
+	type: SORT_FRIENDS,
+	friends
+})
