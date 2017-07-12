@@ -5,7 +5,8 @@ const axios = require('axios');
 const initialState = {
 	isLoggedIn: true,
 	showNewHosp: false,
-	hospitalizations: []
+	hospitalizations: [],
+	friendsSearchResults: []
 };
 
 //reducers
@@ -86,6 +87,13 @@ export const hospReducer = (state=initialState, action) => {
 						hospitalizations: action.hosps
 					})
 					return state;
+
+			case 'SEARCH_FRIENDS':
+				state = Object.assign({}, state, {
+					friendsSearchResults: action.results
+				})
+				return state;
+
 
 		default:
 			return state;

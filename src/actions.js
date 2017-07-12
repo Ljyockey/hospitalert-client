@@ -44,3 +44,9 @@ export const REMOVE_USER = 'REMOVE_USER';
 export const removeUser = () => ({
 	type: REMOVE_USER
 })
+
+export const SEARCH_FRIENDS = 'SEARCH_FRIENDS';
+export const searchFriends = (results) => ({
+	type: SEARCH_FRIENDS,
+	results
+})

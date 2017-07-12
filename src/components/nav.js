@@ -11,6 +11,7 @@ export function Nav(props) {
 			<ul className="navigation">
 				<li><Link to="/">Hospitalert</Link></li>
 				<li><Link to={`/${props.dashboardOrLogin}`}>{props.dashboardOrLogin}</Link></li>
+				<li><Link to="/friends">Friends</Link></li>
 			</ul>
 		</nav>
 		);
