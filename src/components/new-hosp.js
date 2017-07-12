@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import {addNewHosp} from '../actions';
+import {addNewHosp, newHospToggle} from '../actions';
 
 export class NewHosp extends React.Component {
 
@@ -14,7 +14,7 @@ export class NewHosp extends React.Component {
       latestUpdate: this.status.value
     }
     this.props.dispatch(addNewHosp(newH));
-    this.props.history.push('/dashboard');
+    this.props.dispatch(newHospToggle());
   }
 
 	render() {

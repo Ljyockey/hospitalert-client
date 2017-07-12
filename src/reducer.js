@@ -1,3 +1,7 @@
+const {API_BASE_URL} = require('./config');
+const axios = require('axios');
+
+
 const initialState = {
 	isLoggedIn: true,
 	showNewHosp: false,
@@ -45,10 +49,7 @@ export const hospReducer = (state=initialState, action) => {
 			return state;
 
 		case 'ADD_NEW_HOSP':
-			state = Object.assign({}, state, {
-				mockDb: [...state.mockDb, action.hosp]
-			});
-			return state;
+			axios.post(`${API_BASE_URL}/hospitalizations`, action.hosp);
 
 		case 'FORM_TOGGLE':
 			const findItemToToggle = state.mockDb.filter(function(item, index) {
@@ -89,6 +90,9 @@ export const hospReducer = (state=initialState, action) => {
 					showNewHosp: newHospToggle
 				})
 				return state;
+
+			case 'CREATE_NEW_USER':
+				axios.post(`${API_BASE_URL}/users`, action.user);
 
 		default:
 			return state;

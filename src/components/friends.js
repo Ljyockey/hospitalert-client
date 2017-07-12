@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-export class Friends extends React.Component {
+export default class Friends extends React.Component {
     render() {
         return (
             <main>
@@ -21,8 +21,9 @@ export class Friends extends React.Component {
                 <section className="friend-requests">
                     {/*create variable for requests*/}
                 </section>
-                    {/*create variable for pending requests*/}
                 <section className="pending-requests">
+                    {/*create variable for pending requests*/}
+                </section>
             </main>
         );
     }

@@ -27,3 +27,9 @@ export const NEW_HOSP_TOGGLE = 'NEW_HOSP_TOGGLE';
 export const newHospToggle = () => ({
 	type: NEW_HOSP_TOGGLE
 })
+
+export const CREATE_NEW_USER = 'CREATE_NEW_USER';
+export const createNewUser = (user) => ({
+	type: CREATE_NEW_USER,
+	user
+})
