@@ -3,11 +3,22 @@ import {connect} from 'react-redux';
 
 import NewHosp from './new-hosp';
 
-import {deleteHospitalization, formToggle, updateItem, newHospToggle} from '../actions';
+import {deleteHospitalization, formToggle, updateItem, newHospToggle, getHospitalizations, removeUser} from '../actions';
 
 import './dashboard.css';
 
+const axios = require('axios');
+const {API_BASE_URL} = require('../config');
+
 export class Dashboard extends React.Component {
+
+	componentWillMount() {
+		axios.get(`${API_BASE_URL}/hospitalizations`)
+			.then(res => {
+				this.props.dispatch(getHospitalizations(res.data.hospitalizations));
+			})
+		.catch(err => console.error(err));
+	}
 
 	toggleNewHosp(event) {
 		event.preventDefault();
@@ -41,14 +52,19 @@ export class Dashboard extends React.Component {
 		this.props.dispatch(deleteHospitalization(index));
 	}
 
+	deleteAccount(event) {
+		event.preventDefault();
+		this.props.dispatch(removeUser());
+	}
+
 	render() {
 
 		const newHosp = (this.props.showNewHosp ? <NewHosp /> : undefined);
 
-		const formattedDbItems = this.props.dbItem.map((item, index) => (
+		const formattedDbItems = this.props.dbItem.map((item) => (
 			item.isAForm ?
-				(<div className="js-hospitalizations-item-edit" key={index}>
-					<form onSubmit={e => this.editItemHandler(e, index)}>
+				(<div className="js-hospitalizations-item-edit" key={item.id}>
+					<form onSubmit={e => this.editItemHandler(e, item.id)}>
 						<h2>{item.patient}</h2>
 						<label>Latest Status</label>
 						<textarea placeholder={item.latestUpdate} ref={input =>
@@ -64,11 +80,11 @@ export class Dashboard extends React.Component {
 							<option value="no">no</option>
 						</select>
 						<button type="submit">Submit</button>
-						<button onClick={e => this.formToggleHandler(e, index)} className="cancel">Cancel</button>
+						<button onClick={e => this.formToggleHandler(e, item.id)} className="cancel">Cancel</button>
 					</form>
 				</div>)
 			:
-				(<div className="js-hospitalizations-item" key={index}>
+				(<div className="js-hospitalizations-item" key={item.id}>
 					<h2>{item.patient}</h2>
 					<h3>Latest Status</h3>
 					<p>{item.latestUpdate}</p>
@@ -76,8 +92,8 @@ export class Dashboard extends React.Component {
 					<p>{item.condition}</p>
 					<h4>Conscious?</h4>
 					<p>{item.conscious ? 'yes' : 'no'}</p>
-					<button onClick={e => this.formToggleHandler(e, index)} className="edit">Edit</button>
-					<button onClick={e => this.removeItem(e, index)} className="delete">Delete</button>
+					<button onClick={e => this.formToggleHandler(e, item.id)} className="edit">Edit</button>
+					<button onClick={e => this.removeItem(e, item.id)} className="delete">Delete</button>
 				</div>)
 			
 		));
@@ -94,13 +110,19 @@ export class Dashboard extends React.Component {
 				<div className="js-hospitalizations">
 					{formattedDbItems}
 				</div>
+				<div className="account-setting">
+					<h2>Account Settings</h2>
+					<button onClick={e => this.deleteAccount(e)}>
+						Delete Account
+					</button>
+				</div>
 			</main>
 			);
 	}
 }
 
 const mapStateToProps = (state) => ({
-	dbItem: state.mockDb,
+	dbItem: state.hospitalizations,
   	showNewHosp: state.showNewHosp,
   	createOrHide: state.showNewHosp ? 'hide' : 'Create New'
 });

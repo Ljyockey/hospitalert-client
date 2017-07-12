@@ -33,3 +33,14 @@ export const createNewUser = (user) => ({
 	type: CREATE_NEW_USER,
 	user
 })
+
+export const GET_HOSPITALIZATIONS = 'GET_HOSPITALIZATIONS';
+export const getHospitalizations = (hosps) => ({
+	type: GET_HOSPITALIZATIONS,
+	hosps
+})
+
+export const REMOVE_USER = 'REMOVE_USER';
+export const removeUser = () => ({
+	type: REMOVE_USER
+})

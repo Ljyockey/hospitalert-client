@@ -5,46 +5,21 @@ const axios = require('axios');
 const initialState = {
 	isLoggedIn: true,
 	showNewHosp: false,
-	mockDb: [	{
-		patient: "Grandpa Joe",
-		condition: "heart attack",
-		conscious: true,
-		latestUpdate: "Waiting to meet with doctor for results of EKG",
-		isAForm: false
-		},
-		{
-		patient: "Mom",
-		condition: "car accident",
-		conscious: true,
-		latestUpdate: "X-Ray confrimed broken leg. Waiting for cast. Should be released soon.",
-		isAForm: false
-		},
-		{
-		patient: "Ricky",
-		condition: "seizure",
-		conscious: true,
-		latestUpdate: "Ricky was just taken to another room for an MRI",
-		isAForm: false
-		},
-		{
-		patient: "Sally",
-		condition: "hip surgery",
-		conscious: false,
-		latestUpdate: "Doctor says surgery was a success and that Sally should be waking up any minute now",
-		isAForm: false
-	}]
+	hospitalizations: []
 };
 
+//reducers
 export const hospReducer = (state=initialState, action) => {
 
 	switch(action.type) {
 
 		case 'DELETE_HOSPITALIZATION':
-			const editedDb = state.mockDb.filter(function(item, index) {
-				return index !== action.index
+			axios.delete(`${API_BASE_URL}/hospitalizations/${action.index}`);
+			const editedDb = state.hospitalizations.filter(function(item) {
+				return item.id !== action.index
 			})
 			state = Object.assign({}, state, {
-				mockDb: editedDb
+				hospitalizations: editedDb
 			});
 			return state;
 
@@ -52,27 +27,38 @@ export const hospReducer = (state=initialState, action) => {
 			axios.post(`${API_BASE_URL}/hospitalizations`, action.hosp);
 
 		case 'FORM_TOGGLE':
-			const findItemToToggle = state.mockDb.filter(function(item, index) {
-				if (index === action.index) {
-					item.isAForm = !item.isAForm
+			let newFormBoolean;
+			const findItemToToggle = state.hospitalizations.filter(function(item) {
+				if (item.id === action.index) {
+					newFormBoolean = !item.isAForm;
+					item.isAForm = newFormBoolean;
 				}
 				return item; 
 			})
+			axios.put(`${API_BASE_URL}/hospitalizations/${action.index}`, {
+				id: action.index,
+				isAForm: newFormBoolean
+			});
 			state = Object.assign({}, state, {
-				mockDb: findItemToToggle
+				hospitalizations: findItemToToggle
 			});
 			return state;
 
 		case 'UPDATE_ITEM':
+			const objForDb = {id: action.index};
 			const possibleUpdates = ['condition', 'conscious', 'latestUpdate'];
-			const targetDbItem = state.mockDb[action.index];
+			const targetDbItem = state.hospitalizations.filter(function(obj) {
+				return obj.id === action.index
+			});
 			possibleUpdates.forEach(field => {
 				if(field in action.object) {
-					targetDbItem[field] = action.object[field];
+					targetDbItem[0][field] = action.object[field];
+					objForDb[field] = action.object[field];
 				}
 			})
-			const newDb = state.mockDb.filter(function(item, index) {
-				if (index === action.index) {
+			axios.put(`${API_BASE_URL}/hospitalizations/${action.index}`, objForDb);
+			const newDb = state.hospitalizations.filter(function(item) {
+				if (item.id === action.index) {
 					return targetDbItem;
 				}
 				else {
@@ -80,7 +66,7 @@ export const hospReducer = (state=initialState, action) => {
 				}
 			});
 			state = Object.assign({}, state, {
-				mockDb: newDb
+				hospitalizations: newDb
 			})
 			return state;
 
@@ -93,6 +79,13 @@ export const hospReducer = (state=initialState, action) => {
 
 			case 'CREATE_NEW_USER':
 				axios.post(`${API_BASE_URL}/users`, action.user);
+				break;
+
+			case 'GET_HOSPITALIZATIONS':
+					state = Object.assign({}, state, {
+						hospitalizations: action.hosps
+					})
+					return state;
 
 		default:
 			return state;
