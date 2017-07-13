@@ -17,23 +17,33 @@ buildNewUser(event) {
 
 	render() {
 		return (
-	      <section className="signup-form">
-	        <h2>Signup</h2>
-	        <form onSubmit={e => this.buildNewUser(e)}>
-	          <label for="name">Name</label>
-	          <input type="text" id="name" ref={input =>
-						this.name = input} required />
-	          
-	          <label for="email">Email</label>
-	          <input type="email" ref={input =>
-						this.email = input} required />
-	          
-	          <label for="password">Password</label>
-	          <input type="password" ref={input =>
-						this.password = input} required />
-	          
-	          <br /><button type="submit">Submit</button>
-	        </form>
+	      <section className="signup-form contact">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12 contact-card mdl-card mdl-shadow--8dp">
+								<div class="mdl-card__title mdl-card--expand">
+									<h2>Signup</h2>
+								</div>
+								<div class="mdl-card__supporting-text">
+									<form onSubmit={e => this.buildNewUser(e)}>
+										<label for="name">Name</label>
+										<input type="text" id="name" ref={input =>
+										this.name = input} required />
+										
+										<label for="email">Email</label>
+										<input type="email" ref={input =>
+										this.email = input} required />
+										
+										<label for="password">Password</label>
+										<input type="password" ref={input =>
+										this.password = input} required />
+										
+										<br /><button type="submit">Submit</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
 	      </section>
 			);
 	}

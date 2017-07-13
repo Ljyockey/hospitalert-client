@@ -27,19 +27,19 @@ export class Friends extends React.Component {
         
         const searchResults = (this.props.friendsResults.length > 0) ?
         this.props.friendsResults.map((item => {
-            <li key={item.id}>${item.name}</li>
+            return <li key={item.id}>{item.name}</li>
         })) : undefined;
 
         const pendingFriends = (this.props.pending.length > 0) ?
             (this.props.pending.map((item) => {
-                <li key={item.id}>${item.id}</li>
+                return <li key={item.id}>{item.id}</li>
             }))
         :
             <p>No pending requests</p>;
 
         const activeFriends = (this.props.active.length > 0) ?
-            (this.props.active.map((item) => {
-                <li key={item.id}>${item.id}</li>
+            (this.props.active.forEach((item) => {
+                <li key={item.id}>{item.id}</li>
             }))
         :
             <p>You don't have any friends yet. Use the search bar to find friends.</p>;
@@ -69,7 +69,9 @@ export class Friends extends React.Component {
 
                 <section className="friend-list">
                     <h2>My Friends</h2>
-                    {/*create a variable for friends*/}
+                    <ul>
+                        {activeFriends}
+                    </ul>
                 </section>
 
                 <section className="friend-requests">
