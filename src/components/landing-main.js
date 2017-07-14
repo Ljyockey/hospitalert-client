@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 
 export class LandingMain extends React.Component {
 	render() {
@@ -21,10 +22,10 @@ export class LandingMain extends React.Component {
 
 				<section className="features">
 
-					<div class="container">
-						<div class="row">
-							<div class="col-md-3 post mdl-card mdl-shadow--6dp">
-								<div class="mdl-card__title mdl-card--expand">
+					<div className="container">
+						<div className="row">
+							<div className="col-md-3 post mdl-card mdl-shadow--6dp">
+								 <div className="mdl-card__title mdl-card--expand"> 
 									<h3 className="mdl-card__title-text">Add an Event</h3>
 								</div>
 								<div className="mdl-card__supporting-text">
@@ -33,11 +34,11 @@ export class LandingMain extends React.Component {
 								</div>
 							</div>
 
-							<div class="col-md-3 status mdl-card mdl-shadow--6dp">
-								<div class="mdl-card__title mdl-card--expand">
+							<div className="col-md-3 status mdl-card mdl-shadow--6dp">
+								<div className="mdl-card__title mdl-card--expand">
 									<h3 className="mdl-card__title-text">Update Status</h3>
 								</div>
-								<div class="mdl-card__supporting-text">
+								<div className="mdl-card__supporting-text">
 									<p>Post updates any time you have information you want to share. People who can view this
 									hospitalization will be notified immediately.</p>
 								</div>

@@ -1,3 +1,12 @@
+body {
+	font-family: 'Nunito', sans-serif;
+	font-size: 16px;
+}
+
+a, a:hover, a:focus {
+	color: #00b1bd;
+}
+
 h1 {
 	margin-top: 90px;
 }
@@ -7,12 +16,82 @@ h2 {
 }
 
 header {
-	margin-top: 90px;
+	margin-top: 50px;
 	text-align: center;
 }
 
 section {
 	margin: 20px;
+}
+
+.about-wide, .contact-card, .dashboard-wide, .post-request {
+	max-width: 100%;
+	margin: 0 auto 20px auto;
+	text-align: center;
+}
+
+.about-wide h2, .contact-card h2, 
+.dashboard-wide h1, .post-request h2 {
+	margin: 0 auto;
+}
+
+.col-md-3, .about, .view a, footer {
+	background-color: #f6f6f6;	
+	box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, 
+		rgba(0, 0, 0, 0.12) 0px 1px 4px;
+	border-radius: 2px;
+}
+
+.container, .row {
+	text-align: center;
+	margin-top: 0;
+}
+
+.mdl-card__supporting-text {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+img {
+	width: 100%;
+	height: auto;
+	padding-bottom: 10px;
+}
+
+section {
+	margin: 20px;
+}
+
+.form-container {
+	text-align: center;
+}
+
+.create label, .signup-form label {
+	width: 65px;
+	text-align: right;
+	font-size: 14px;
+}
+
+.signup-form {
+	margin-bottom: 100px;
+}
+
+.text {
+	margin-bottom: 10px;
+	margin-top: 0;
+}
+
+.text::placeholder {
+	font-size: 12px;
+}
+
+.move {
+	position: relative;
+	bottom: 15px;
+}
+
+.post-request, .contact-card {
+	margin-bottom: 50px;
 }
 
 .js-hospitalizations-item, .js-hospitalizations-item-edit {
@@ -61,4 +140,32 @@ footer ul {
 footer a {
 	color: white;
 	margin-left: 10px;
+}
+
+@media only screen and (min-width: 640px) {
+	.about-wide, .dashboard-wide {
+		width: 80%;
+	}
+	.col-md-3 {
+		margin-left: 60px;
+	}
+	.text {
+		width: 200px;
+		margin-top: 10px;
+	}
+	.move {
+		bottom: 0;
+	}
+	footer a {
+		margin-left: 20px;
+	}
+}
+
+@media only screen and (min-width: 995px) {
+	.text {
+		width: 500px;
+	}
+	.move {
+	bottom: 15px;
+	}
 }

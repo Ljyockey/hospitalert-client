@@ -64,36 +64,40 @@ export class Dashboard extends React.Component {
 		const formattedDbItems = this.props.dbItem.map((item) => (
 			item.isAForm ?
 				(<div className="js-hospitalizations-item-edit" key={item.id}>
-					<form onSubmit={e => this.editItemHandler(e, item.id)}>
-						<h2>{item.patient}</h2>
-						<label>Latest Status</label>
-						<textarea placeholder={item.latestUpdate} ref={input =>
-							this.status = input}></textarea>
-						<label>Condition</label>
-						<input type="text" placeholder={item.condition} ref={input => 
-							this.condition = input} />
-						<label>Conscious?</label>
-						<select name="conscious" title="conscious" ref={input =>
-							this.conscious = input}>
-							<option></option>
-							<option value="yes">yes</option>
-							<option value="no">no</option>
-						</select>
-						<button type="submit">Submit</button>
-						<button onClick={e => this.formToggleHandler(e, item.id)} className="cancel">Cancel</button>
-					</form>
+					<h2 className="js-accordion__header">{item.patient}</h2>
+					<div className="js-accordion__panel content">
+						<form onSubmit={e => this.editItemHandler(e, item.id)}>
+							<label>Latest Status</label>
+							<textarea placeholder={item.latestUpdate} ref={input =>
+								this.status = input}></textarea>
+							<label>Condition</label>
+							<input type="text" placeholder={item.condition} ref={input => 
+								this.condition = input} />
+							<label>Conscious?</label>
+							<select name="conscious" title="conscious" ref={input =>
+								this.conscious = input}>
+								<option></option>
+								<option value="yes">yes</option>
+								<option value="no">no</option>
+							</select>
+							<button type="submit">Submit</button>
+							<button onClick={e => this.formToggleHandler(e, item.id)} className="cancel">Cancel</button>
+						</form>
+					</div>
 				</div>)
 			:
 				(<div className="js-hospitalizations-item" key={item.id}>
-					<h2>{item.patient}</h2>
-					<h3>Latest Status</h3>
-					<p>{item.latestUpdate}</p>
-					<h4>Condition</h4>
-					<p>{item.condition}</p>
-					<h4>Conscious?</h4>
-					<p>{item.conscious ? 'yes' : 'no'}</p>
-					<button onClick={e => this.formToggleHandler(e, item.id)} className="edit">Edit</button>
-					<button onClick={e => this.removeItem(e, item.id)} className="delete">Delete</button>
+					<h2 className="js-accordion__header">{item.patient}</h2>
+						<div className="js-accordion__panel content">
+						<h3>Latest Status</h3>
+						<p>{item.latestUpdate}</p>
+						<h4>Condition</h4>
+						<p>{item.condition}</p>
+						<h4>Conscious?</h4>
+						<p>{item.conscious ? 'yes' : 'no'}</p>
+						<button onClick={e => this.formToggleHandler(e, item.id)} className="edit">Edit</button>
+						<button onClick={e => this.removeItem(e, item.id)} className="delete">Delete</button>
+					</div>
 				</div>)
 			
 		));
@@ -107,7 +111,7 @@ export class Dashboard extends React.Component {
 				</button>
 				{newHosp}
 				</div>
-				<div className="js-hospitalizations">
+				<div className="js-hospitalizations js-accordion">
 					{formattedDbItems}
 				</div>
 				<div className="account-setting">

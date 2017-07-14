@@ -9,15 +9,15 @@ import './main.css';
 
 export default function Hospitalert() {
 	return (
-		<Router>
-			<div className="hospitalert">
-				<Nav />
-				<main>
-					<Route exact path="/" component={Landing} />
-					<Route exact path="/dashboard" component={Dashboard} />
-					<Route exact path="/friends" component={Friends} />
-				</main>
-			</div>
-		</Router>
+			<Router>
+				<div className="hospitalert">
+					<Nav />
+					<main>
+						<Route exact path="/" component={Landing} />
+						<Route exact path="/dashboard" component={Dashboard} />
+						<Route exact path="/friends" component={Friends} />
+					</main>
+				</div>
+			</Router>
 	);
 }

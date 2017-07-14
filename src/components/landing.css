@@ -32,32 +32,22 @@
 }
 
 .post > .mdl-card__title {
-	/*background: linear-gradient(
+	background: linear-gradient(
         rgba(0, 0, 0, 0.3),
         rgba(0, 0, 0, 0.3)
     	),
-		url("img/loop.jpg");*/
+		url("../assets/questions.jpeg");
 	background-size: cover;
 	color: white;
 
 }
 
 .status > .mdl-card__title {
-	/*background: linear-gradient(
+	background: linear-gradient(
         rgba(0, 0, 0, 0.3),
         rgba(0, 0, 0, 0.3)
     	),
-		url("img/updates.jpg");*/
-	background-size: cover;
-	color: white;
-}
-
-.questions > .mdl-card__title {
-	/*background: linear-gradient(
-        rgba(0, 0, 0, 0.3),
-        rgba(0, 0, 0, 0.3)
-    	),
-		url("img/questions.jpeg");*/
+		url("../assets/loop.jpg");
 	background-size: cover;
 	color: white;
 }

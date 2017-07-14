@@ -17,14 +17,14 @@ buildNewUser(event) {
 
 	render() {
 		return (
-	      <section className="signup-form contact">
-					<div class="container">
-						<div class="row">
-							<div class="col-md-12 contact-card mdl-card mdl-shadow--8dp">
-								<div class="mdl-card__title mdl-card--expand">
+	      <section className="signup-form">
+					<div className="container">
+						<div className="row">
+							<div className="col-md-12 contact-card mdl-card mdl-shadow--8dp">
+								<div className="mdl-card__title mdl-card--expand">
 									<h2>Signup</h2>
 								</div>
-								<div class="mdl-card__supporting-text">
+								<div className="mdl-card__supporting-text">
 									<form onSubmit={e => this.buildNewUser(e)}>
 										<label for="name">Name</label>
 										<input type="text" id="name" ref={input =>
