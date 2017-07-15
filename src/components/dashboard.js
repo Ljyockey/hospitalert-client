@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import Collapsible from 'react-collapsible';
 
 import NewHosp from './new-hosp';
 
@@ -64,8 +65,7 @@ export class Dashboard extends React.Component {
 		const formattedDbItems = this.props.dbItem.map((item) => (
 			item.isAForm ?
 				(<div className="js-hospitalizations-item-edit" key={item.id}>
-					<h2 className="js-accordion__header">{item.patient}</h2>
-					<div className="js-accordion__panel content">
+					<h2>{item.patient}</h2>
 						<form onSubmit={e => this.editItemHandler(e, item.id)}>
 							<label>Latest Status</label>
 							<textarea placeholder={item.latestUpdate} ref={input =>
@@ -83,12 +83,11 @@ export class Dashboard extends React.Component {
 							<button type="submit">Submit</button>
 							<button onClick={e => this.formToggleHandler(e, item.id)} className="cancel">Cancel</button>
 						</form>
-					</div>
 				</div>)
 			:
-				(<div className="js-hospitalizations-item" key={item.id}>
+				(<Collapsible className="js-hospitalizations-item" key={item.id}
+					trigger={item.patient}>
 					<h2 className="js-accordion__header">{item.patient}</h2>
-						<div className="js-accordion__panel content">
 						<h3>Latest Status</h3>
 						<p>{item.latestUpdate}</p>
 						<h4>Condition</h4>
@@ -97,8 +96,7 @@ export class Dashboard extends React.Component {
 						<p>{item.conscious ? 'yes' : 'no'}</p>
 						<button onClick={e => this.formToggleHandler(e, item.id)} className="edit">Edit</button>
 						<button onClick={e => this.removeItem(e, item.id)} className="delete">Delete</button>
-					</div>
-				</div>)
+				</Collapsible>)
 			
 		));
 
@@ -111,7 +109,7 @@ export class Dashboard extends React.Component {
 				</button>
 				{newHosp}
 				</div>
-				<div className="js-hospitalizations js-accordion">
+				<div className="js-hospitalizations js-accordion container">
 					{formattedDbItems}
 				</div>
 				<div className="account-setting">

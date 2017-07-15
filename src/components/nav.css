@@ -1,25 +1,28 @@
-.navigation a, .navigation a:hover, .navigation a:focus {
-	color: white;
+nav {
+	position: relative;
 }
 
 nav ul {
 	text-align: left;
-	padding-top: 10px;
 }
 
 nav li {
 	list-style-type: none;
-	display: inline;
-	padding-right: 10px;
+	display: inline-block;
 }
 
-.navbar {
+nav {
 	background-color: #00b1bd;
 	border: none;
 	width: 100%;
 	position: fixed;
 	top: 0;
 	z-index: 10;
+	max-height: 50px;
+}
+
+nav a, nav a:hover, nav a:focus {
+	color: white;
 }
 
  .navbar-default .navbar-nav>li>a {

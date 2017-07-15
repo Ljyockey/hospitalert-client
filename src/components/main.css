@@ -24,7 +24,8 @@ section {
 	margin: 20px;
 }
 
-.about-wide, .contact-card, .dashboard-wide, .post-request {
+.about-wide, .contact-card, .dashboard-wide, 
+.search-friends-card, .post-request {
 	max-width: 100%;
 	margin: 0 auto 20px auto;
 	text-align: center;
@@ -92,11 +93,6 @@ section {
 
 .post-request, .contact-card {
 	margin-bottom: 50px;
-}
-
-.js-hospitalizations-item, .js-hospitalizations-item-edit {
-	padding-left: 10%;
-	margin-bottom: 20px;
 }
 
 label, select, input[type=checkbox] {

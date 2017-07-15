@@ -53,39 +53,62 @@ export class Friends extends React.Component {
                 </div>
                 
 
-                <section className="search-friends">
-                    <form className="search-friends-form" onSubmit={e => this.searchFriends(e)}>
-                        <label htmlFor="search-friends">Find Friends - Type Name</label>
-                        <input type="text" placeholder="Joe Smith" ref={input =>
-                        this.search = input}/>
-                        <input type="submit" value="Search" />
-                    </form>
+            <section className='search-friends'>
+                    <div className='search-friends-card mdl-card mdl-shadow--8dp'>
+                        <div className="mdl-card__title">
+                            <h2>Search for Friends</h2>
+                        </div>
+                        <div className="mdl-card__supporting-text">
+                    		<form className="search-friends-form" onSubmit={e => this.searchFriends(e)}>
+                       			 <label htmlFor="search-friends">Find Friends - Type Name</label>
+                        			<input type="text" placeholder="Joe Smith" ref={input =>
+                        				this.search = input}/>
+                        			<input type="submit" value="Search" />
+                   		 </form>
                     <div className="friend-search-results">
                         <ul>
                             {searchResults}
                         </ul>
                     </div>
-                </section>
+                        </div>
+                    </div>
+                </section>
 
-                <section className="friend-list">
-                    <h2>My Friends</h2>
-                    <ul>
-                        {activeFriends}
-                    </ul>
-                </section>
+                    <section className="friends container">
+                        <div className="row">
+                            <div className="col-md-3 friend-list mdl-card mdl-shadow--6dp">
+                                 <div className="mdl-card__title mdl-card--expand"> 
+                                    <h3 className="mdl-card__title-text">My Friends</h3>
+                                </div>
+                                <div className="mdl-card__supporting-text">
+                                 		<ul>
+                            			{searchResults}
+                        			</ul>
+                                </div>
+                            </div>
 
-                <section className="friend-requests">
-                    <h2>Friend Requests</h2>
-                    <ul>
-                        {pendingFriends}
-                    </ul>
-                </section>
-                <section className="pending-requests">
-                    <h2>Sent Requests</h2>
-                    <ul>
-                        {pendingFriends}
-                    </ul>
-                </section>
+                            <div className="col-md-3 friend-requests mdl-card mdl-shadow--6dp">
+                                <div className="mdl-card__title mdl-card--expand">
+                                    <h3 className="mdl-card__title-text">Friend Requests</h3>
+                                </div>
+                                <div className="mdl-card__supporting-text">
+                                 		<ul>
+                        				{activeFriends}
+                    			</ul>
+                                </div>
+                            </div>
+                            <div className="col-md-3 pending-requests mdl-card mdl-shadow--6dp">
+                                <div className="mdl-card__title mdl-card--expand">
+                                    <h3 className="mdl-card__title-text">Sent Requests</h3>
+                                </div>
+                                <div className="mdl-card__supporting-text">
+                    			<ul>
+                        				{pendingFriends}
+                    			</ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
             </main>
         );
     }
