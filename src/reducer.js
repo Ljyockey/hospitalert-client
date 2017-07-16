@@ -3,7 +3,8 @@ const axios = require('axios');
 
 
 const initialState = {
-	isLoggedIn: true,
+	isLoggedIn: false,
+	currentUser: 0,
 	showNewHosp: false,
 	hospitalizations: [],
 	friendsSearchResults: [],
@@ -108,6 +109,12 @@ export const hospReducer = (state=initialState, action) => {
 					activeFriends: myActiveFriends
 				})
 				return state;
+
+			case 'CHECK_CREDENTIALS':
+				axios.get(`${API_BASE_URL}/users/dashboard`, {auth: action.credential})
+				.then(res => {
+					console.log(res);
+				})
 
 
 		default:

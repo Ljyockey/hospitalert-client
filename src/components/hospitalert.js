@@ -4,6 +4,7 @@ import Nav from './nav';
 import Landing from './landing';
 import Dashboard from './dashboard';
 import Friends from './friends';
+import Login from './login';
 
 import './main.css';
 
@@ -13,6 +14,7 @@ export default function Hospitalert() {
 				<div className="hospitalert">
 					<main>
 						<Nav />
+						<Login />
 						<Route exact path="/" component={Landing} />
 						<Route exact path="/dashboard" component={Dashboard} />
 						<Route exact path="/friends" component={Friends} />

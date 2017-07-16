@@ -56,3 +56,9 @@ export const sortFriends = (friends) => ({
 	type: SORT_FRIENDS,
 	friends
 })
+
+export const CHECK_CREDENTIALS = 'CHECK_CREDENTIALS';
+export const checkCredentials = (credentials) => ({
+	type: CHECK_CREDENTIALS,
+	credentials
+})

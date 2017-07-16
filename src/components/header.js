@@ -1,6 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
+import './header.css'
+
 export class Header extends React.Component {
 	render() {
 		return (
