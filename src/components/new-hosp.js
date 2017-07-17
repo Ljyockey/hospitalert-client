@@ -3,6 +3,9 @@ import {connect} from 'react-redux';
 
 import {addNewHosp, newHospToggle} from '../actions';
 
+const axios = require('axios');
+const {API_BASE_URL} = require('../config');
+
 export class NewHosp extends React.Component {
 
   resetForm(event) {
@@ -22,8 +25,11 @@ export class NewHosp extends React.Component {
       latestUpdate: this.status.value,
       userId: this.props.userId || 1
     }
-    this.props.dispatch(addNewHosp(newH));
-    this.props.dispatch(newHospToggle());
+    axios.post(`${API_BASE_URL}/hospitalizations`, newH)
+      .then(res => {
+        this.props.dispatch(newHospToggle());
+        this.props.dispatch(addNewHosp(res.data))
+      });
   }
 
 	render() {
@@ -31,15 +37,15 @@ export class NewHosp extends React.Component {
 		return (   
       <section className="new-hosp">
         <form onSubmit={e => this.submitHosp(e)}>
-          <label for="patient">Patient</label>
+          <label htmlFor="patient">Patient</label>
           <input id="patient" type="text" ref={input => 
             this.patient = input} required />
           
-          <label for="condition">Condition</label>
+          <label htmlFor="condition">Condition</label>
           <input id="condition" type="text" ref={input =>
             this.condition = input} required />
           
-          <label for="status">Status</label>
+          <label htmlFor="status">Status</label>
           <textarea ref={input => 
             this.status = input}></textarea>
           

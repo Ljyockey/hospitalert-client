@@ -28,8 +28,10 @@ export const hospReducer = (state=initialState, action) => {
 			return state;
 
 		case 'ADD_NEW_HOSP':
-			axios.post(`${API_BASE_URL}/hospitalizations`, action.hosp);
-			break;
+			state = Object.assign({}, state, {
+				hospitalizations: [...state.hospitalizations, action.hosp]
+			});
+			return state;
 
 		case 'FORM_TOGGLE':
 			let newFormBoolean;

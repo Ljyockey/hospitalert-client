@@ -26,15 +26,15 @@ buildNewUser(event) {
 								</div>
 								<div className="mdl-card__supporting-text">
 									<form onSubmit={e => this.buildNewUser(e)}>
-										<label for="name">Name</label>
+										<label htmlFor="name">Name</label>
 										<input type="text" id="name" ref={input =>
 										this.name = input} placeholder="Jane Smith" required />
 										
-										<label for="email">Email</label>
+										<label htmlFor="email">Email</label>
 										<input type="email" ref={input =>
 										this.email = input} placeholder="jsmith@example.com" required />
 										
-										<label for="password">Password</label>
+										<label htmlFor="password">Password</label>
 										<input type="password" ref={input =>
 										this.password = input} required />
 										
