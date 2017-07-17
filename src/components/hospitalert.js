@@ -14,7 +14,6 @@ export default function Hospitalert() {
 				<div className="hospitalert">
 					<main>
 						<Nav />
-						<Login />
 						<Route exact path="/" component={Landing} />
 						<Route exact path="/dashboard" component={Dashboard} />
 						<Route exact path="/friends" component={Friends} />

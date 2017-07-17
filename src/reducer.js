@@ -4,7 +4,7 @@ const axios = require('axios');
 
 const initialState = {
 	isLoggedIn: false,
-	currentUser: 0,
+	currentUser: {},
 	showNewHosp: false,
 	hospitalizations: [],
 	friendsSearchResults: [],
@@ -111,10 +111,17 @@ export const hospReducer = (state=initialState, action) => {
 				return state;
 
 			case 'CHECK_CREDENTIALS':
-				axios.get(`${API_BASE_URL}/users/dashboard`, {auth: action.credential})
+				axios.get(`${API_BASE_URL}/users/dashboard`, {auth: action.credentials})
 				.then(res => {
-					console.log(res);
-				})
+					state = Object.assign({}, state, {
+						currentUser: {
+							name: res.data.name,
+							id: res.data.id
+						},
+						isLoggedIn: true
+					});
+				return state;
+				});
 
 
 		default:

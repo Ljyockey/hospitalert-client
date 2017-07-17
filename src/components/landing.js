@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import Header from './header';
 import LandingMain from './landing-main';
 import SignupForm from './signup-form';
+import Login from './login';
 
 import './landing.css';
 
@@ -10,6 +11,7 @@ export class Landing extends React.Component {
 	render() {
 		return (
 			<main>
+				<Login />
 				<Header />
 				<LandingMain />
 				<SignupForm />

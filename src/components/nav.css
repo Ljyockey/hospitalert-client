@@ -36,4 +36,8 @@ nav li {
 
 .navbar-default .navbar-brand {
 	color: #f8f8f8;
-} 
+}
+
+.login-form a {
+	color: #00b1bd;
+}

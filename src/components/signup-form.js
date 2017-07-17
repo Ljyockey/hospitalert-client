@@ -17,7 +17,7 @@ buildNewUser(event) {
 
 	render() {
 		return (
-	      <section className="signup-form">
+	      <section className="signup-form" id="signup-form">
 					<div className="container">
 						<div className="row">
 							<div className="col-md-12 contact-card mdl-card mdl-shadow--8dp">

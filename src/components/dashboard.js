@@ -4,7 +4,7 @@ import Collapsible from 'react-collapsible';
 
 import NewHosp from './new-hosp';
 
-import {deleteHospitalization, formToggle, updateItem, newHospToggle, getHospitalizations, removeUser} from '../actions';
+import {deleteHospitalization, formToggle, updateItem, newHospToggle, getHospitalizations} from '../actions';
 
 import './dashboard.css';
 
@@ -53,11 +53,6 @@ export class Dashboard extends React.Component {
 		this.props.dispatch(deleteHospitalization(index));
 	}
 
-	deleteAccount(event) {
-		event.preventDefault();
-		this.props.dispatch(removeUser());
-	}
-
 	render() {
 
 		const newHosp = (this.props.showNewHosp ? <NewHosp /> : undefined);
@@ -101,7 +96,7 @@ export class Dashboard extends React.Component {
 		));
 
 		return (
-			<main>
+			<div className="hospitalizations-page">
 				<h1>Hospitalizations</h1>
 				<div className="create-new-container">
 				<button onClick={e => this.toggleNewHosp(e)} className="create-new">
@@ -112,13 +107,7 @@ export class Dashboard extends React.Component {
 				<div className="js-hospitalizations js-accordion container">
 					{formattedDbItems}
 				</div>
-				<div className="account-setting">
-					<h2>Account Settings</h2>
-					<button onClick={e => this.deleteAccount(e)}>
-						Delete Account
-					</button>
-				</div>
-			</main>
+			</div>
 			);
 	}
 }
