@@ -29,6 +29,7 @@ export const hospReducer = (state=initialState, action) => {
 
 		case 'ADD_NEW_HOSP':
 			axios.post(`${API_BASE_URL}/hospitalizations`, action.hosp);
+			break;
 
 		case 'FORM_TOGGLE':
 			let newFormBoolean;
@@ -110,19 +111,22 @@ export const hospReducer = (state=initialState, action) => {
 				})
 				return state;
 
-			case 'CHECK_CREDENTIALS':
-				axios.get(`${API_BASE_URL}/users/dashboard`, {auth: action.credentials})
-				.then(res => {
-					state = Object.assign({}, state, {
-						currentUser: {
-							name: res.data.name,
-							id: res.data.id
-						},
-						isLoggedIn: true
-					});
-				return state;
+			case 'USER_LOGIN':
+				state = Object.assign({}, state, {
+					currentUser: {
+						name: action.user.name,
+						id: action.user.id
+					},
+					isLoggedIn: true
 				});
+				return state;
 
+			case 'USER_LOGOUT':
+				state = Object.assign({}, state, {
+					currentUser: {},
+					isLoggedIn: false
+				});
+				return state;
 
 		default:
 			return state;

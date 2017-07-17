@@ -4,7 +4,6 @@ import Nav from './nav';
 import Landing from './landing';
 import Dashboard from './dashboard';
 import Friends from './friends';
-import Login from './login';
 
 import './main.css';
 

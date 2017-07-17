@@ -5,13 +5,22 @@ import {addNewHosp, newHospToggle} from '../actions';
 
 export class NewHosp extends React.Component {
 
+  resetForm(event) {
+    event.preventDefault();
+    this.patient.value = '';
+    this.condition.value = '';
+    this.status.value = '';
+    this.conscious.checked = false;
+  }
+
   submitHosp(event) {
     event.preventDefault();
     const newH = {
       patient: this.patient.value,
       condition: this.condition.value,
       conscious: this.conscious.checked,
-      latestUpdate: this.status.value
+      latestUpdate: this.status.value,
+      userId: this.props.userId || 1
     }
     this.props.dispatch(addNewHosp(newH));
     this.props.dispatch(newHospToggle());
@@ -39,7 +48,7 @@ export class NewHosp extends React.Component {
             }/> Conscious?<br />
           
             <button type="submit">Submit</button>
-          <button type="reset">Reset</button>
+          <button type="reset" onClick={e => this.resetForm(e)}>Reset</button>
           
         </form>
       </section>
@@ -47,4 +56,8 @@ export class NewHosp extends React.Component {
 	}
 }
 
-export default connect()(NewHosp);
+const mapStateToProps = (state) => ({
+  userId: state.currentUser.id
+})
+
+export default connect(mapStateToProps)(NewHosp);

@@ -59,53 +59,64 @@ export class Dashboard extends React.Component {
 
 		const formattedDbItems = this.props.dbItem.map((item) => (
 			item.isAForm ?
-				(<div className="js-hospitalizations-item-edit" key={item.id}>
+				(<div className="js-hospitalizations-item item-edit" key={item.id}>
 					<h2>{item.patient}</h2>
-						<form onSubmit={e => this.editItemHandler(e, item.id)}>
-							<label>Latest Status</label>
-							<textarea placeholder={item.latestUpdate} ref={input =>
-								this.status = input}></textarea>
-							<label>Condition</label>
-							<input type="text" placeholder={item.condition} ref={input => 
-								this.condition = input} />
-							<label>Conscious?</label>
-							<select name="conscious" title="conscious" ref={input =>
-								this.conscious = input}>
-								<option></option>
-								<option value="yes">yes</option>
-								<option value="no">no</option>
-							</select>
-							<button type="submit">Submit</button>
-							<button onClick={e => this.formToggleHandler(e, item.id)} className="cancel">Cancel</button>
-						</form>
+					<form onSubmit={e => this.editItemHandler(e, item.id)}>
+						<label>Latest Status</label>
+						<textarea placeholder={item.latestUpdate} ref={input =>
+							this.status = input}></textarea>
+						<label>Condition</label>
+						<input type="text" placeholder={item.condition} ref={input => 
+							this.condition = input} />
+						<label>Conscious?</label>
+						<select name="conscious" title="conscious" ref={input =>
+							this.conscious = input}>
+							<option></option>
+							<option value="yes">yes</option>
+							<option value="no">no</option>
+						</select>
+						<button type="submit">Submit</button>
+						<button onClick={e => this.formToggleHandler(e, item.id)} className="cancel">Cancel</button>
+					</form>
 				</div>)
 			:
 				(<Collapsible className="js-hospitalizations-item" key={item.id}
 					trigger={item.patient}>
-					<h2 className="js-accordion__header">{item.patient}</h2>
-						<h3>Latest Status</h3>
-						<p>{item.latestUpdate}</p>
-						<h4>Condition</h4>
-						<p>{item.condition}</p>
-						<h4>Conscious?</h4>
-						<p>{item.conscious ? 'yes' : 'no'}</p>
-						<button onClick={e => this.formToggleHandler(e, item.id)} className="edit">Edit</button>
-						<button onClick={e => this.removeItem(e, item.id)} className="delete">Delete</button>
+					<h2>{item.patient}</h2>
+					<h3>Latest Status</h3>
+					<p>{item.latestUpdate}</p>
+					<h4>Condition</h4>
+					<p>{item.condition}</p>
+					<h4>Conscious?</h4>
+					<p>{item.conscious ? 'yes' : 'no'}</p>
+					<button onClick={e => this.formToggleHandler(e, item.id)} className="edit">Edit</button>
+					<button onClick={e => this.removeItem(e, item.id)} className="delete">Delete</button>
 				</Collapsible>)
 			
 		));
 
 		return (
-			<div className="hospitalizations-page">
-				<h1>Hospitalizations</h1>
-				<div className="create-new-container">
-				<button onClick={e => this.toggleNewHosp(e)} className="create-new">
-					{this.props.createOrHide}
-				</button>
-				{newHosp}
-				</div>
+			<div className="dashboard-main">
+				<header className="dashboard-header">
+					<div className="dashboard-wide mdl-card mdl-shadow--6dp">
+						<div className="mdl-card__title mdl-card--expand">
+							<h1 className="mdl-card__title-text">Dashboard</h1>
+						</div>
+						<div className="mdl-card__supporting-text">
+							<p>View hositalizations and update the status. Your friends will be able to see the updated statuses.</p>
+							<p>Create a new hospitalization entry and update the status.</p>
+						</div>
+					</div>
+				</header>
+				<h2 className="hospitalizations-header">Hospitalizations</h2>
 				<div className="js-hospitalizations js-accordion container">
 					{formattedDbItems}
+				</div>
+				<div className="create-new-container">
+					<button onClick={e => this.toggleNewHosp(e)} className="create-new">
+						{this.props.createOrHide}
+					</button>
+					{newHosp}
 				</div>
 			</div>
 			);

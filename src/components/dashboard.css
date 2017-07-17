@@ -1,5 +1,13 @@
-h1, .create-new-container {
+.dashboard-header {
+	margin-top: 80px;
+}
+
+h2, .create-new-container {
 	text-align: center;
+}
+
+.hospitalizations-header {
+	margin: 50px auto;
 }
 
 .Collapsible__trigger {
@@ -7,4 +15,13 @@ h1, .create-new-container {
 	display: block;
 	width: 100%;
 	border: 1px solid black;
+	padding: 10px 0;
+}
+
+.Collapsible__contentInner, .item-edit button {
+	margin-bottom: 20px;
+}
+
+.create-new {
+	margin-top: 50px;
 }

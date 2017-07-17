@@ -2,10 +2,12 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
-import {checkCredentials, removeUser} from '../actions';
+import {userLogin, userLogout, removeUser} from '../actions';
 
 import './nav.css';
 
+const axios = require('axios');
+const {API_BASE_URL} = require('../config');
 
 export class Nav extends React.Component {
 
@@ -15,9 +17,17 @@ export class Nav extends React.Component {
 		username: this.email.value,
 		password: this.password.value
 	};
-	this.props.dispatch(checkCredentials(credentials));
+	axios.get(`${API_BASE_URL}/users/dashboard`, {auth: credentials})
+	.then(res => {
+		this.props.dispatch(userLogin(res.data));
+		});
 	this.email.value = '';
 	this.password.value = '';
+	}
+
+	logout(event) {
+		event.preventDefault();
+		this.props.dispatch(userLogout());
 	}
 
 	deleteAccount(event) {
@@ -39,8 +49,8 @@ export class Nav extends React.Component {
 			<a href="#signup-form">Signup</a>
 		</form>
 		:
-		<ul className="dropdown-menu">
-            <li><button type="submit" className="logout">Logout</button></li>
+		<ul className="dropdown-menu account-settings">
+            <li><button onClick={e => this.logout(e)} className="logout">Logout</button></li>
             <li><button onClick={e => this.deleteAccount(e)}>Delete Account</button></li>
 		</ul>
 		
@@ -60,10 +70,10 @@ export class Nav extends React.Component {
 				</div>
 				<div className="collapse navbar-collapse" id="landing-nav">
 					<ul className="nav navbar-nav">
-						<li><Link to={`/${this.props.dashboardOrLogin}`}>{this.props.dashboardOrLogin}</Link></li>
+						<li>{this.props.dashboardOrSignup}</li>
 						<li>{this.props.friendsOrAbout}</li>
 						<li className="dropdown">
-							<a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" 
+							<a className="dropdown-toggle" data-toggle="dropdown" role="button" 
 								aria-haspopup="true" aria-expanded="false">{this.props.loginOrName} 
 								<span className="caret"></span></a>
 									{loginFormOrAccountInfo}
@@ -77,7 +87,7 @@ export class Nav extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-	dashboardOrLogin: state.isLoggedIn ? 'Dashboard' : 'Login',
+	dashboardOrSignup: state.isLoggedIn ? <Link to="/dashboard">Dashboard</Link> : <a href="#signup-form">Signup</a>,
 	friendsOrAbout: state.isLoggedIn ? <Link to="/friends">Friends</Link> : <a href="#about">About</a>,
 	loginOrName: state.isLoggedIn ? state.currentUser.name : 'Login'
 })

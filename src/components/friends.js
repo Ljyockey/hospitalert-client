@@ -39,7 +39,7 @@ export class Friends extends React.Component {
 
         const activeFriends = (this.props.active.length > 0) ?
             (this.props.active.forEach((item) => {
-                <li key={item.id}>{item.friendName}</li>
+                return <li key={item.id}>{item.friendName}</li>
             }))
         :
             <p>You don't have any friends yet. Use the search bar to find friends.</p>;

@@ -28,11 +28,11 @@ buildNewUser(event) {
 									<form onSubmit={e => this.buildNewUser(e)}>
 										<label for="name">Name</label>
 										<input type="text" id="name" ref={input =>
-										this.name = input} required />
+										this.name = input} placeholder="Jane Smith" required />
 										
 										<label for="email">Email</label>
 										<input type="email" ref={input =>
-										this.email = input} required />
+										this.email = input} placeholder="jsmith@example.com" required />
 										
 										<label for="password">Password</label>
 										<input type="password" ref={input =>
