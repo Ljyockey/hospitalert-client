@@ -78,6 +78,12 @@ export class Nav extends React.Component {
 								<span className="caret"></span></a>
 									{loginFormOrAccountInfo}
 						</li>
+						<li className="facebook-btn">
+							{/* <div className="fb-login-button" data-max-rows="1" data-size="medium" data-button-type="continue_with" 
+							data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div> */}
+							<a href={`${API_BASE_URL}/users/auth/facebook`}>
+								<input type="button" value="Login with Facebook"/></a>
+						</li>
 					</ul>
 				</div>
 			</div>
