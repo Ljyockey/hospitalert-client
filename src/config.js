@@ -2,5 +2,6 @@ module.exports = {
   PORT: process.env.PORT || 3000,
   // other stuff
   API_BASE_URL: process.env.REACT_APP_API_BASE_URL ||
-    "http://localhost:8080" || 'http://hospitalert-api.herokuapp.com'
+    "http://localhost:8080" || 'http://hospitalert-api.herokuapp.com',
+  APP_ID: '126180944566416'
 };

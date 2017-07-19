@@ -1,13 +1,15 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux';
 import {Link} from 'react-router-dom';
+import {FacebookLogin} from 'react-facebook-login-component';
 
 import {userLogin, userLogout, removeUser} from '../actions';
 
 import './nav.css';
 
 const axios = require('axios');
-const {API_BASE_URL} = require('../config');
+const {API_BASE_URL, APP_ID} = require('../config');
 
 export class Nav extends React.Component {
 
@@ -23,6 +25,28 @@ export class Nav extends React.Component {
 		});
 	this.email.value = '';
 	this.password.value = '';
+	}
+
+	facebookLogin(event) {
+		event.preventDefault();
+		axios.get(`${API_BASE_URL}/users/auth`)
+		.then(res => {
+			console.log(res);
+		})
+	}
+
+	dispatchLogin(user) {
+		this.props.dispatch(userLogin(user));
+	}
+	
+	responseFacebook(response) {
+		console.log(response);
+		if(!('status' in response)) {
+			axios.post(`${API_BASE_URL}/users/facebook`, response)
+			.then(user => {
+				return userLogin(user.data);
+			});
+		}
 	}
 
 	logout(event) {
@@ -79,10 +103,16 @@ export class Nav extends React.Component {
 									{loginFormOrAccountInfo}
 						</li>
 						<li className="facebook-btn">
-							{/* <div className="fb-login-button" data-max-rows="1" data-size="medium" data-button-type="continue_with" 
-							data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div> */}
-							<a href={`${API_BASE_URL}/users/auth/facebook`}>
-								<input type="button" value="Login with Facebook"/></a>
+							<FacebookLogin
+          						socialId={APP_ID}
+          						lang="en_US"
+								xfbml={true}
+								version="v2.9"
+          						fields="name,email,picture"
+								scope="public_profile,user_friends,email"
+          						responseHandler={(r) => this.responseFacebook(r)}
+								buttonText="Login with Facebook"
+        					/>
 						</li>
 					</ul>
 				</div>
@@ -92,10 +122,14 @@ export class Nav extends React.Component {
 	}
 }
 
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({ userLogin: userLogin },dispatch)
+}
+
 const mapStateToProps = (state) => ({
 	dashboardOrSignup: state.isLoggedIn ? <Link to="/dashboard">Dashboard</Link> : <a href="#signup-form">Signup</a>,
 	friendsOrAbout: state.isLoggedIn ? <Link to="/friends">Friends</Link> : <a href="#about">About</a>,
 	loginOrName: state.isLoggedIn ? state.currentUser.name : 'Login'
 })
 
-export default connect(mapStateToProps)(Nav);
+export default connect(mapStateToProps, mapDispatchToProps)(Nav);

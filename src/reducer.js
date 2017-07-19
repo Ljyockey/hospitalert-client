@@ -114,10 +114,12 @@ export const hospReducer = (state=initialState, action) => {
 				return state;
 
 			case 'USER_LOGIN':
+				console.log('in reducer');
 				state = Object.assign({}, state, {
 					currentUser: {
 						name: action.user.name,
-						id: action.user.id
+						id: action.user.id,
+						profilePicture: action.user.profilePicture
 					},
 					isLoggedIn: true
 				});

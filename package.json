@@ -10,6 +10,8 @@
     "react-bootstrap": "^0.31.1",
     "react-collapsible": "^1.4.0",
     "react-dom": "^15.6.1",
+    "react-facebook-login": "^3.6.2",
+    "react-facebook-login-component": "^0.8.0",
     "react-router-dom": "^4.1.1",
     "react-tap-event-plugin": "^2.0.1",
     "redux": "^3.7.1"
