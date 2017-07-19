@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { bindActionCreators } from 'redux';
+// import { bindActionCreators } from 'redux';
 import {Link} from 'react-router-dom';
 import {FacebookLogin} from 'react-facebook-login-component';
 
@@ -40,11 +40,10 @@ export class Nav extends React.Component {
 	}
 	
 	responseFacebook(response) {
-		console.log(response);
 		if(!('status' in response)) {
 			axios.post(`${API_BASE_URL}/users/facebook`, response)
 			.then(user => {
-				return userLogin(user.data);
+				this.props.dispatch(userLogin(user.data));
 			});
 		}
 	}
@@ -122,14 +121,10 @@ export class Nav extends React.Component {
 	}
 }
 
-function mapDispatchToProps(dispatch){
-  return bindActionCreators({ userLogin: userLogin },dispatch)
-}
-
 const mapStateToProps = (state) => ({
 	dashboardOrSignup: state.isLoggedIn ? <Link to="/dashboard">Dashboard</Link> : <a href="#signup-form">Signup</a>,
 	friendsOrAbout: state.isLoggedIn ? <Link to="/friends">Friends</Link> : <a href="#about">About</a>,
 	loginOrName: state.isLoggedIn ? state.currentUser.name : 'Login'
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Nav);
+export default connect(mapStateToProps)(Nav);
