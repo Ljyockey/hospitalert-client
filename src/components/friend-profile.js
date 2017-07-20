@@ -30,7 +30,7 @@ export class FriendProfile extends React.Component {
 					<p>{item.conscious ? 'yes' : 'no'}</p>
 				</Collapsible>
         )):
-            <p>{this.props.profile.name}hasn't added any hospitalizations yet.</p>
+            <p>{this.props.profile.name} hasn't added any hospitalizations yet.</p>
 
         return (
         <div className="profile-main">

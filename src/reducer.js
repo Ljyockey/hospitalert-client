@@ -131,10 +131,7 @@ export const hospReducer = (state=initialState, action) => {
 				return state;
 
 			case 'USER_LOGOUT':
-				state = Object.assign({}, state, {
-					currentUser: {},
-					isLoggedIn: false
-				});
+				state = Object.assign({}, initialState);
 				return state;
 
 			case 'NEW_SENT_REQUEST':

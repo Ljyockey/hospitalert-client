@@ -22,6 +22,7 @@ export class Friends extends React.Component {
     searchFriends(event) {
         event.preventDefault()
         const searchParams = this.search.value;
+        this.search.value = '';
         axios.get(`${API_BASE_URL}/users/${searchParams}`)
         .then(res => {
             this.props.dispatch(searchFriends(res.data.users))
@@ -62,10 +63,12 @@ export class Friends extends React.Component {
 
     render() {
         
-        const searchResults = (this.props.friendsResults.length > 0) ?
+        const searchResults = (this.props.friendsResults !== undefined) ?
+        (this.props.friendsResults.length > 0) ?
         this.props.friendsResults.map((item => {
             return <li key={item.id}>{item.name} - <a onClick={e => this.addFriend(e, item.id)}>Add Friend</a></li>
-        })) : <p>No results.</p>;
+        })) : <p>No results.</p>
+        : undefined
 
         const pendingFriends = (this.props.pending.length > 0) ?
             (this.props.pending.map((item) => {

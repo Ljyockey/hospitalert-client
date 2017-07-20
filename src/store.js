@@ -2,4 +2,8 @@ import {createStore} from 'redux';
 
 import {hospReducer} from './reducer';
 
-export default createStore(hospReducer);
+import {loadState} from './local-storage';
+
+const persistedState = loadState();
+
+export default createStore(hospReducer, persistedState);

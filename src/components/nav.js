@@ -54,6 +54,8 @@ export class Nav extends React.Component {
 
 	render() {
 
+		const deleteOrNot = this.props.currentUser.id === 1 ? undefined : <li onClick={e => this.deleteAccount(e)}><Link className="logout" to="/">Delete Account</Link></li> 
+
 		const loginFormOrAccountInfo = this.props.loginOrName === 'Login' ? 
 		<form className="login-form dropdown-menu" onSubmit={e => this.checkCredentials(e)}>
 			<label htmlFor="email">Email</label>
@@ -67,8 +69,8 @@ export class Nav extends React.Component {
 		</form>
 		:
 		<ul className="dropdown-menu account-settings">
-            <li><button onClick={e => this.logout(e)} className="logout">Logout</button></li>
-            <li><button onClick={e => this.deleteAccount(e)}>Delete Account</button></li>
+            <li onClick={e => this.logout(e)}><Link to="/" className="logout">Logout</Link></li>
+             {deleteOrNot}
 		</ul>
 
 
@@ -132,7 +134,8 @@ const mapStateToProps = (state) => ({
 	dashboardOrSignup: state.isLoggedIn ? <Link to="/dashboard">Dashboard</Link> : <a href="#signup-form">Signup</a>,
 	friendsOrAbout: state.isLoggedIn ? <Link to="/friends">Friends</Link> : <a href="#about">About</a>,
 	loginOrName: state.isLoggedIn ? state.currentUser.name : 'Login',
-	loggedIn: state.isLoggedIn
+	loggedIn: state.isLoggedIn,
+	currentUser: state.currentUser
 })
 
 export default connect(mapStateToProps)(Nav);

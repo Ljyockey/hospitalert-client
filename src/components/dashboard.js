@@ -57,7 +57,7 @@ export class Dashboard extends React.Component {
 
 		const newHosp = (this.props.showNewHosp ? <NewHosp /> : undefined);
 
-		const formattedDbItems = (this.props.dbItem.length > 0) ? (
+		const formattedDbItems = (this.props.dbItem !== undefined && this.props.dbItem.length > 0) ? (
 		
 		this.props.dbItem.map((item) => 
 			item.isAForm ?

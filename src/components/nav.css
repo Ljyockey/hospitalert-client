@@ -85,13 +85,19 @@ nav li {
 	display: block;
 }
 
-.account-settings button {
+.account-settings button, .account-settings a {
 	width: 100%;
-	padding: 5px 0;
+	padding: 5px 0 !important;
 }
 
-.account-settings button:hover,
-.account-settings button:focus {
-	color: #f0f0f0;
-	background-color: #5c3333;
+.logout {
+	background-color: #f1f1f1;
+	text-align: center;
+	border-bottom: 0.5px solid #5c3333;
+}
+
+.logout:hover,
+.logout:focus {
+	color: #f0f0f0 !important;
+	background-color: #5c3333 !important;
 }
