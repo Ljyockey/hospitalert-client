@@ -9,7 +9,9 @@ const initialState = {
 	hospitalizations: [],
 	friendsSearchResults: [],
 	pendingFriends: [],
-	activeFriends: []
+	sentFriends: [],
+	activeFriends: [],
+	profile: {}
 };
 
 //reducers
@@ -102,13 +104,17 @@ export const hospReducer = (state=initialState, action) => {
 
 			case 'SORT_FRIENDS':
 				const myPendingFriends = action.friends.filter((obj) => {
-					return (obj.status === 'pending');
+					return (obj.status === 'pending' && obj.friend_id === state.currentUser.id);
 				});
 				const myActiveFriends = action.friends.filter((obj) => {
 					return (obj.status === 'active');
 				});
+				const mySentFriends = action.friends.filter((obj) =>{
+					return (obj.status === 'pending' && obj.user_id === state.currentUser.id);
+				})
 				state = Object.assign({}, state, {
 					pendingFriends: myPendingFriends,
+					sentFriends: mySentFriends,
 					activeFriends: myActiveFriends
 				})
 				return state;
@@ -131,8 +137,48 @@ export const hospReducer = (state=initialState, action) => {
 				});
 				return state;
 
+			case 'NEW_SENT_REQUEST':
+				state = Object.assign({}, state, {
+					sentFriends: [...state.sentFriends, action.friend]
+				})
+				return state;
+
+			case 'ACCEPT_FRIEND':
+				const newPending = state.pendingFriends.filter((obj) => {
+					return (obj.id !== action.index);
+				})
+				const newActiveFriend = state.pendingFriends.filter((obj) => {
+					return (obj.id === action.index);
+				})
+				state = Object.assign({}, state, {
+					pendingFriends: newPending,
+					activeFriends: [...state.activeFriends, newActiveFriend]
+				})
+				return state;
+
+			case 'DELETE_FRIEND':
+				const newPendingFriends = state.pendingFriends.filter((obj) => {
+					return (obj.id !== action.index)
+				})
+				const newActive = state.activeFriends.filter((obj) => {
+					return (obj.id !== action.index)
+				})
+				state = Object.assign({}, state, {
+					pendingFriends: newPendingFriends,
+					activeFriends: newActive
+				})
+				return state;
+
+			case 'SET_PROFILE':
+				state = Object.assign({}, state, {
+					profile: action.profile
+				})
+				console.log(state);
+				return state;
+
 		default:
 			return state;
+
 
 	}
 }

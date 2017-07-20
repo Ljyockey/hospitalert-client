@@ -67,3 +67,30 @@ export const USER_LOGOUT = 'USER_LOGOUT';
 export const userLogout = () => ({
 	type: USER_LOGOUT
 })
+
+export const NEW_SENT_REQUEST = 'NEW_SENT_REQUEST';
+export const newSentRequest = (friend) => ({
+	type: NEW_SENT_REQUEST,
+	friend
+})
+
+export const ACCEPT_FRIEND = 'ACCEPT_FRIEND';
+export const acceptFriend = (index) => ({
+	type: ACCEPT_FRIEND,
+	index
+})
+
+export const DELETE_FRIEND = 'DELETE_FRIEND';
+export const deleteFriend = (index) => ({
+	type: DELETE_FRIEND,
+	index
+})
+
+export const SET_PROFILE = 'SET_PROFILE';
+export const setProfile = (id, name) => ({
+	type: SET_PROFILE,
+	profile: {
+		id,
+		name
+	}
+})

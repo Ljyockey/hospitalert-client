@@ -1,6 +1,7 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {searchFriends, sortFriends} from '../actions';
+import {searchFriends, sortFriends, newSentRequest, acceptFriend, deleteFriend, setProfile} from '../actions';
 
 import './friends.css';
 
@@ -10,8 +11,12 @@ const {API_BASE_URL} = require('../config');
 export class Friends extends React.Component {
 
     componentWillMount() {
-        axios.get(`${API_BASE_URL}/friends`)
-        .then(res => this.props.dispatch(sortFriends(res.data.Friends)))
+        axios.get(`${API_BASE_URL}/friends/${this.props.userId}`)
+        .then(res => {
+            if (res.data.friends !== undefined) {
+            this.props.dispatch(sortFriends(res.data.friends))
+            }
+        })
     }
 
     searchFriends(event) {
@@ -23,23 +28,70 @@ export class Friends extends React.Component {
         })
     }
 
+    addFriend(event, friend) {
+        event.preventDefault();
+        const newFriend = {
+            status: 'pending',
+            user_id: this.props.userId,
+            friend_id: friend
+        }
+        axios.post(`${API_BASE_URL}/friends`, newFriend)
+        .then(res => {
+            this.props.dispatch(newSentRequest(res.data))
+        })
+    }
+
+    acceptFriend(event, id) {
+        event.preventDefault();
+        axios.put(`${API_BASE_URL}/friends/${id}`, {status: 'active'})
+        this.props.dispatch(acceptFriend(id))
+    }
+
+    setProfile(event, id, name) {
+        event.preventDefault();
+        this.props.dispatch(setProfile(id, name))
+    }
+
+    deleteFriend(event, id) {
+        event.preventDefault();
+        axios.delete(`${API_BASE_URL}/friends/${id}`)
+        this.props.dispatch(deleteFriend(id))
+    }
+
+
+
     render() {
         
         const searchResults = (this.props.friendsResults.length > 0) ?
         this.props.friendsResults.map((item => {
-            return <li key={item.id}>{item.name}</li>
-        })) : undefined;
+            return <li key={item.id}>{item.name} - <a onClick={e => this.addFriend(e, item.id)}>Add Friend</a></li>
+        })) : <p>No results.</p>;
 
         const pendingFriends = (this.props.pending.length > 0) ?
             (this.props.pending.map((item) => {
-                return <li key={item.id}>{item.friendName}</li>
+                return <li key={item.id}>{item.userName} - 
+                    <a onClick={(e) => this.acceptFriend(e, item.id)}>Add Friend</a>
+                    <a onClick={(e) => this.deleteFriend(e, item.id)}>Delete</a>
+                    </li>
             }))
         :
             <p>No pending requests</p>;
 
-        const activeFriends = (this.props.active.length > 0) ?
-            (this.props.active.forEach((item) => {
+        const sentFriends = (this.props.sent.length > 0) ?
+            (this.props.sent.map((item) => {
                 return <li key={item.id}>{item.friendName}</li>
+            }))
+        :
+            <p>No sent requests</p>;
+
+        const activeFriends = (this.props.active.length > 0) ?
+            (this.props.active.map((item) => {
+                const targetName = item.friendName === this.props.userName ? item.userName : item.friendName;
+                const targetId = item.friend_id === this.props.userId ? item.user_id : item.friend_id;
+                return <li key={item.id} onClick={(e) => this.setProfile(e, targetId, targetName)}>
+                        <Link to={`/profile/${targetId}`}>{targetName}</Link> - &nbsp;
+                        [<a className="delete-friend" onClick={(e) => this.deleteFriend(e, item.id)}>Delete</a>]            
+                    </li>
             }))
         :
             <p>You don't have any friends yet. Use the search bar to find friends.</p>;
@@ -104,7 +156,7 @@ export class Friends extends React.Component {
                             </div>
                             <div className="mdl-card__supporting-text">
                                 <ul>
-                                {pendingFriends}
+                                {sentFriends}
                                 </ul>
                             </div>
                         </div>
@@ -119,7 +171,10 @@ export class Friends extends React.Component {
 const mapStateToProps = (state) => ({
     friendsResults: state.friendsSearchResults,
     pending: state.pendingFriends,
-    active: state.activeFriends
+    sent: state.sentFriends,
+    active: state.activeFriends,
+    userId: state.currentUser.id,
+    userName: state.currentUser.name
 });
 
 export default connect(mapStateToProps)(Friends);

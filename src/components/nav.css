@@ -48,6 +48,15 @@ nav li {
 	color: #f8f8f8;
 }
 
+.demo-link:hover {
+	cursor: pointer;
+}
+
+.kep-login-facebook {
+	max-height: 40px;
+	margin-top: 5%;
+}
+
 .login-form a {
 	color: #00b1bd;
 	display: block;

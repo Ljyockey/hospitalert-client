@@ -4,6 +4,7 @@ import Nav from './nav';
 import Landing from './landing';
 import Dashboard from './dashboard';
 import Friends from './friends';
+import FriendProfile from './friend-profile';
 
 import './main.css';
 
@@ -16,6 +17,7 @@ export default function Hospitalert() {
 						<Route exact path="/" component={Landing} />
 						<Route exact path="/dashboard" component={Dashboard} />
 						<Route exact path="/friends" component={Friends} />
+						<Route exact path="/profile/:id" component={FriendProfile} />
 					</main>
 				</div>
 			</Router>

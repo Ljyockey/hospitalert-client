@@ -1,8 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-// import { bindActionCreators } from 'redux';
 import {Link} from 'react-router-dom';
-import {FacebookLogin} from 'react-facebook-login-component';
+import FacebookLogin from 'react-facebook-login';
 
 import {userLogin, userLogout, removeUser} from '../actions';
 
@@ -12,32 +11,6 @@ const axios = require('axios');
 const {API_BASE_URL, APP_ID} = require('../config');
 
 export class Nav extends React.Component {
-
-	checkCredentials(event) {
-	event.preventDefault();
-	const credentials = {
-		username: this.email.value,
-		password: this.password.value
-	};
-	axios.get(`${API_BASE_URL}/users/dashboard`, {auth: credentials})
-	.then(res => {
-		this.props.dispatch(userLogin(res.data));
-		});
-	this.email.value = '';
-	this.password.value = '';
-	}
-
-	facebookLogin(event) {
-		event.preventDefault();
-		axios.get(`${API_BASE_URL}/users/auth`)
-		.then(res => {
-			console.log(res);
-		})
-	}
-
-	dispatchLogin(user) {
-		this.props.dispatch(userLogin(user));
-	}
 	
 	responseFacebook(response) {
 		if(!('status' in response)) {
@@ -48,6 +21,18 @@ export class Nav extends React.Component {
 		}
 	}
 
+	demoLogin(event) {
+		event.preventDefault()
+		const credentials = {
+			username: 'yockey.alerts@gmail.com',
+			password: 'Password1'
+		};
+		axios.get(`${API_BASE_URL}/users/dashboard`, {auth: credentials})
+		.then(res => {
+			this.props.dispatch(userLogin(res.data));
+			});
+	}
+
 	logout(event) {
 		event.preventDefault();
 		this.props.dispatch(userLogout());
@@ -56,6 +41,15 @@ export class Nav extends React.Component {
 	deleteAccount(event) {
 		event.preventDefault();
 		this.props.dispatch(removeUser());
+	}
+
+		//for backend facebook auth
+		facebookLogin(event) {
+		event.preventDefault();
+		axios.get('http://localhost:8080/users/auth')
+		.then(res => {
+			console.log(res);
+		})
 	}
 
 	render() {
@@ -76,6 +70,40 @@ export class Nav extends React.Component {
             <li><button onClick={e => this.logout(e)} className="logout">Logout</button></li>
             <li><button onClick={e => this.deleteAccount(e)}>Delete Account</button></li>
 		</ul>
+
+
+		const navState = this.props.loggedIn ? 
+			<ul className="nav navbar-nav">
+				<li>{this.props.dashboardOrSignup}</li>
+				<li>{this.props.friendsOrAbout}</li>
+				<li className="dropdown">
+					<a className="dropdown-toggle" data-toggle="dropdown" role="button" 
+						aria-haspopup="true" aria-expanded="false">{this.props.loginOrName} 
+						<span className="caret"></span></a>
+							{loginFormOrAccountInfo}
+				</li>
+			</ul>
+		:
+			<ul className="nav navbar-nav">
+				<li>{this.props.friendsOrAbout}</li>
+				<li>
+					<a className="demo-link" onClick={e => this.demoLogin(e)}>
+						Demo Account
+					</a>
+				</li>
+				<li className="facebook-btn">
+					<FacebookLogin
+						appId={APP_ID}
+						autoload={true}
+						fields="name,email,picture"
+						callback={(r) => this.responseFacebook(r)}
+						size="small"
+						icon="fa-facebook"
+						textButton="Login"
+					/>
+				</li>
+			</ul>
+
 		
 
 
@@ -92,28 +120,7 @@ export class Nav extends React.Component {
 					<Link className="navbar-brand" to="/">HospitAlert</Link>
 				</div>
 				<div className="collapse navbar-collapse" id="landing-nav">
-					<ul className="nav navbar-nav">
-						<li>{this.props.dashboardOrSignup}</li>
-						<li>{this.props.friendsOrAbout}</li>
-						<li className="dropdown">
-							<a className="dropdown-toggle" data-toggle="dropdown" role="button" 
-								aria-haspopup="true" aria-expanded="false">{this.props.loginOrName} 
-								<span className="caret"></span></a>
-									{loginFormOrAccountInfo}
-						</li>
-						<li className="facebook-btn">
-							<FacebookLogin
-          						socialId={APP_ID}
-          						lang="en_US"
-								xfbml={true}
-								version="v2.9"
-          						fields="name,email,picture"
-								scope="public_profile,user_friends,email"
-          						responseHandler={(r) => this.responseFacebook(r)}
-								buttonText="Login with Facebook"
-        					/>
-						</li>
-					</ul>
+					{navState}
 				</div>
 			</div>
 		</nav>
@@ -124,7 +131,8 @@ export class Nav extends React.Component {
 const mapStateToProps = (state) => ({
 	dashboardOrSignup: state.isLoggedIn ? <Link to="/dashboard">Dashboard</Link> : <a href="#signup-form">Signup</a>,
 	friendsOrAbout: state.isLoggedIn ? <Link to="/friends">Friends</Link> : <a href="#about">About</a>,
-	loginOrName: state.isLoggedIn ? state.currentUser.name : 'Login'
+	loginOrName: state.isLoggedIn ? state.currentUser.name : 'Login',
+	loggedIn: state.isLoggedIn
 })
 
 export default connect(mapStateToProps)(Nav);

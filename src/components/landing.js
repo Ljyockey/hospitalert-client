@@ -2,7 +2,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Header from './header';
 import LandingMain from './landing-main';
-import SignupForm from './signup-form';
 
 import './landing.css';
 
@@ -12,7 +11,6 @@ export class Landing extends React.Component {
 			<main>
 				<Header />
 				<LandingMain />
-				<SignupForm />
 				<footer>
 					<ul>
 						<li>Made by <a href="http://ljyockey.com">L.J. Yockey</a></li>

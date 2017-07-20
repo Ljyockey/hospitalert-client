@@ -11,6 +11,11 @@ h2 {
     margin-right: auto;
 }
 
-li {
-    list-style-type: none;
+.delete-friend {
+    color: red;
+}
+
+.delete-friend:hover {
+    cursor: pointer;
+    color: red;
 }

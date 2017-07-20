@@ -23,7 +23,7 @@ export class NewHosp extends React.Component {
       condition: this.condition.value,
       conscious: this.conscious.checked,
       latestUpdate: this.status.value,
-      userId: this.props.userId || 1
+      userId: this.props.userId
     }
     axios.post(`${API_BASE_URL}/hospitalizations`, newH)
       .then(res => {

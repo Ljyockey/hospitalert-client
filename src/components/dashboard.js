@@ -14,7 +14,7 @@ const {API_BASE_URL} = require('../config');
 export class Dashboard extends React.Component {
 
 	componentWillMount() {
-		axios.get(`${API_BASE_URL}/hospitalizations`)
+		axios.get(`${API_BASE_URL}/hospitalizations/${this.props.userId}`)
 			.then(res => {
 				this.props.dispatch(getHospitalizations(res.data.hospitalizations));
 			})
@@ -57,7 +57,9 @@ export class Dashboard extends React.Component {
 
 		const newHosp = (this.props.showNewHosp ? <NewHosp /> : undefined);
 
-		const formattedDbItems = this.props.dbItem.map((item) => (
+		const formattedDbItems = (this.props.dbItem.length > 0) ? (
+		
+		this.props.dbItem.map((item) => 
 			item.isAForm ?
 				(<div className="js-hospitalizations-item item-edit" key={item.id}>
 					<h2>{item.patient}</h2>
@@ -93,7 +95,9 @@ export class Dashboard extends React.Component {
 					<button onClick={e => this.removeItem(e, item.id)} className="delete">Delete</button>
 				</Collapsible>)
 			
-		));
+		)):
+				
+			<p>You haven't added any hospitalizations yet.</p>
 
 		return (
 			<div className="dashboard-main">
@@ -126,7 +130,8 @@ export class Dashboard extends React.Component {
 const mapStateToProps = (state) => ({
 	dbItem: state.hospitalizations,
   	showNewHosp: state.showNewHosp,
-  	createOrHide: state.showNewHosp ? 'hide' : 'Create New'
+	createOrHide: state.showNewHosp ? 'hide' : 'Create New',
+	userId: state.currentUser.id
 });
 
 export default connect(mapStateToProps)(Dashboard);
