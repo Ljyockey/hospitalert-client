@@ -1,3 +1,0 @@
-[build]
-
-REACT_APP_API_BASE_URL = 'https://hospitalert-api.herokuapp.com'

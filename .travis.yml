@@ -1,20 +1,9 @@
- language: node_js
- node_js: node
- cache:
-   directories:
-     - node_modules
- script:
-   - npm test
- env:
-   - CI=true
-
- before_deploy:
-   - npm install netlify-cli -g
-   - npm run build
-
- deploy:
-   provider: script
-   script: netlify deploy -s 98529d1d-f0c1-4a4c-8722-3216269319de -t 3790b85835bf726d332fa52b657cea041ea5fdd7b6add68507932f79813856b6 -p ./build
-   skip_cleanup: true
-   on:
-     branch: master
+language: node_js
+node_js: node
+deploy:
+  provider: heroku
+  api_key:
+    secure: HG3hrcG5Nvu9K50W3s0yICGBj4895eL9v2ujdBu+7NSKQP4vpU7nFoQ2/pC9J0S+vMzhIDWETwunbv6XzRRTT/fp6iCR7MxzdHjT2u9s4lrN0IcnWykMpbloPq2r8mL/PSekIJioYxoiCEcq8fcTlh/Tpov5urpThUDbpdXqEugTwnKR2A7rGDoYpI83rXXYirOP9jeVtJImtYMv8ECD7yRFs52nJxUuZ459fjxK1g1ecONQ6iAZuui/mzkPIZjNdJVS5+K3OcnA2MG4Vg1DVOOKUhtKvVNDwRTKlJC6+Vzq0S2IAsL7fK5x88PUGoENSphlER+YABHsXewsqSpwdrlfyQveD5ZQh6t4NieArkMA487V2gugJLTEt3csH2UsBhvkDF3tHX8xV8Vq88yH2OfxJsR7DaR2v33/OnU4LZxAglpUTJoHTf69Zs7b4a+IYoDgd/O4h6mR+20kf0ZbHd+znec1hIVx+3t7hkCgwgWq78I2RIQSOCwT0kZP4JERg7qsx/LXOi3C0Eo3m8MPgKuycc/JjKVyWViNlXuMM9lyxPpiBqOy2cZXEb73UlNEizu1Y/UkwlZJeqlqaBje3BDTsEV4ENaNI4jVgGjGWWvea95MnP4J8/LsZE/1CjWAahFsXDR7aBxA6knsHWT7kqfkQmC+BcpHdsAnn1aVgcI=
+  app: hospitalert-client
+  on:
+    repo: Ljyockey/hospitalert-client
