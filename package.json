@@ -2,6 +2,7 @@
   "name": "hospitalert-client",
   "version": "0.1.0",
   "private": true,
+  "homepage" : "https://hospitalert-client.herokuapp.com/",
   "dependencies": {
     "axios": "^0.16.2",
     "bootstrap": "^3.3.7",
