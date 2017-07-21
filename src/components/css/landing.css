@@ -3,7 +3,7 @@
       rgba(0, 0, 0, 0.3),
       rgba(0, 0, 0, 0.3)
     ),
-    url("../assets/surgery-landing.jpeg");
+    url("../../assets/surgery-landing.jpeg");
 	background-size: cover;
 	height: 600px;
 	color: white;
@@ -35,7 +35,7 @@
         rgba(0, 0, 0, 0.3),
         rgba(0, 0, 0, 0.3)
     	),
-		url("../assets/questions.jpeg");
+		url("../../assets/questions.jpeg");
 	background-size: cover;
 	color: white;
 
@@ -46,7 +46,7 @@
         rgba(0, 0, 0, 0.3),
         rgba(0, 0, 0, 0.3)
     	),
-		url("../assets/loop.jpg");
+		url("../../assets/loop.jpg");
 	background-size: cover;
 	color: white;
 }

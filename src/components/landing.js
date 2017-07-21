@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import Header from './header';
 import LandingMain from './landing-main';
 
-import './landing.css';
+import './css/landing.css';
 
 export class Landing extends React.Component {
 	render() {

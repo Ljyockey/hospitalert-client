@@ -6,7 +6,7 @@ import NewHosp from './new-hosp';
 
 import {deleteHospitalization, formToggle, updateItem, newHospToggle, getHospitalizations} from '../actions';
 
-import './dashboard.css';
+import './css/dashboard.css';
 
 const axios = require('axios');
 const {API_BASE_URL} = require('../config');

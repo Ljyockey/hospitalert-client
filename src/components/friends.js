@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {searchFriends, sortFriends, newSentRequest, acceptFriend, deleteFriend, setProfile} from '../actions';
 
-import './friends.css';
+import './css/friends.css';
 
 const axios = require('axios');
 const {API_BASE_URL} = require('../config');

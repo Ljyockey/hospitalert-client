@@ -5,7 +5,7 @@ import FacebookLogin from 'react-facebook-login';
 
 import {userLogin, userLogout, removeUser} from '../actions';
 
-import './nav.css';
+import './css/nav.css';
 
 const axios = require('axios');
 const {API_BASE_URL, APP_ID} = require('../config');

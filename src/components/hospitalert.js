@@ -6,7 +6,7 @@ import Dashboard from './dashboard';
 import Friends from './friends';
 import FriendProfile from './friend-profile';
 
-import './main.css';
+import './css/main.css';
 
 export default function Hospitalert() {
 	return (
