@@ -8,7 +8,7 @@ export class Header extends React.Component {
 		return (
 				<header className="landing">
 					<div className="landing-text">
-						<h1>Hospitalert</h1>
+						<h1>HospitAlert</h1>
 						<p>Stay up-to-date when the unthinkable happens.
 						Any time. Anywhere.
 						</p>
