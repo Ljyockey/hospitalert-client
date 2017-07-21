@@ -51,11 +51,6 @@
 	color: white;
 }
 
-.cta p {
-	width: 100%;
-	text-align: center;
-}
-
 .view a {
 	text-align: center;
 	padding: 10px;
@@ -63,7 +58,7 @@
 
 }
 
-.contact {
+.features {
 	margin-bottom: 50px;
 }
 

@@ -170,7 +170,6 @@ export const hospReducer = (state=initialState, action) => {
 				state = Object.assign({}, state, {
 					profile: action.profile
 				})
-				console.log(state);
 				return state;
 
 		default:

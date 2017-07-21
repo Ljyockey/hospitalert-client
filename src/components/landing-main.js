@@ -40,8 +40,8 @@ export class LandingMain extends React.Component {
 									<h3 className="mdl-card__title-text">Update Status</h3>
 								</div>
 								<div className="mdl-card__supporting-text">
-									<p>Post updates any time you have information you want to share. People who can view this
-									hospitalization will be notified immediately.</p>
+									<p>Post updates any time you have information you want to share. Your friends will be able
+										to view the updates.</p>
 								</div>
 							</div>
 						</div>

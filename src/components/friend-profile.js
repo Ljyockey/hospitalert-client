@@ -4,6 +4,8 @@ import Collapsible from 'react-collapsible';
 
 import {getHospitalizations} from '../actions';
 
+import './friend-profile.css';
+
 const axios = require('axios');
 const {API_BASE_URL} = require('../config');
 
