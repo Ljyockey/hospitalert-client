@@ -97,7 +97,7 @@ export const hospReducer = (state=initialState, action) => {
 					return state;
 
 			case 'REMOVE_USER':
-					state = Object.assign({}, inistialState);
+					state = Object.assign({}, initialState);
 
 			case 'SEARCH_FRIENDS':
 				state = Object.assign({}, state, {
