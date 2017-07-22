@@ -39,8 +39,11 @@ export class Nav extends React.Component {
 	}
 
 	deleteAccount(event) {
-		event.preventDefault();
-		this.props.dispatch(removeUser());
+		event.preventDefault();	
+		axios.delete(`${API_BASE_URL}/users/${this.props.currentUser.id}`)
+		.then(res => {
+			this.props.dispatch(removeUser());
+		});
 	}
 
 		//for backend facebook auth
