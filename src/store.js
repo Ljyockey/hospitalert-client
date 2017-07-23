@@ -1,9 +1,11 @@
-import {createStore} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
 
-import {hospReducer} from './reducer';
+import thunk from 'redux-thunk';
+
+import reducer from './reducer';
 
 import {loadState} from './local-storage';
 
 const persistedState = loadState();
 
-export default createStore(hospReducer, persistedState);
+export default createStore(reducer, persistedState, applyMiddleware(thunk));

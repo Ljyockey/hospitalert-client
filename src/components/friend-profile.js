@@ -39,7 +39,7 @@ export class FriendProfile extends React.Component {
             <header className="dashboard-header">
                 <div className="dashboard-wide mdl-card mdl-shadow--6dp">
                     <div className="mdl-card__title mdl-card--expand">
-                        <h1 className="mdl-card__title-text">{this.props.profile.name}</h1>
+                        <h1 className="mdl-card__title-text header">{this.props.profile.name}</h1>
                     </div>
                     <div className="mdl-card__supporting-text">
                         <p>View hositalizations posted by {this.props.profile.name} here.</p>

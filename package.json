@@ -14,12 +14,14 @@
     "react-facebook-login-component": "^0.8.0",
     "react-router-dom": "^4.1.1",
     "react-tap-event-plugin": "^2.0.1",
-    "redux": "^3.7.1"
+    "redux": "^3.7.1",
+    "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
     "enzyme": "^2.9.1",
     "react-redux": "^5.0.5",
-    "react-scripts": "1.0.7"
+    "react-scripts": "1.0.7",
+    "react-test-renderer": "^15.6.1"
   },
   "scripts": {
     "start": "react-scripts start",

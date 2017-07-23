@@ -15,7 +15,7 @@ const initialState = {
 };
 
 //reducers
-export const hospReducer = (state=initialState, action) => {
+export default (state=initialState, action) => {
 
 	switch(action.type) {
 
