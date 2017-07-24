@@ -5,7 +5,6 @@ import Hospitalert from './components/hospitalert';
 import store from './store';
 import {saveState} from './local-storage';
 
-// import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 
 store.subscribe(() => {
@@ -26,5 +25,3 @@ ReactDOM.render(
 	<Hospitalert />
 	</Provider>, 
 	document.getElementById('root'));
-// registerServiceWorker();
-//delete this

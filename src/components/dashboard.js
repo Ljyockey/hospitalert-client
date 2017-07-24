@@ -34,6 +34,8 @@ export class Dashboard extends React.Component {
 	editItemHandler(event, index) {
 		event.preventDefault();
 		const itemsToUpdate = {}
+		//only sends fields to API that have values so that existing data
+		//doesn't get erased
 		if(this.conscious.value !== "") {
 			const conscious = this.conscious.value === "yes" ? true : false
 			itemsToUpdate.conscious = conscious;
@@ -59,6 +61,7 @@ export class Dashboard extends React.Component {
 
 		const formattedDbItems = (this.props.dbItem !== undefined && this.props.dbItem.length > 0) ? (
 		
+		//creates Collapsible	
 		this.props.dbItem.map((item) => 
 			item.isAForm ?
 				(<div className="js-hospitalizations-item item-edit" key={item.id}>

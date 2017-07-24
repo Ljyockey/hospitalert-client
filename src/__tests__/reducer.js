@@ -18,17 +18,6 @@ import {
     setProfile
 } from '../actions';
 
-//issues with DB requests
-// describe('deleteHospitalization reducer', () => {
-//     it('should return DELETE_HOSPITALIZATION state', () => {
-//         let state = {
-//             hospitalizations: [{id: 1}, {id: 2}]
-//         };
-//         state = reducer(state, deleteHospitalization(2));
-//         expect(state.hospitalizations.length).toEqual(1);
-//     });
-// });
-
 describe('addNewHosp reducer', () => {
     it('should return ADD_NEW_HOSP state', () => {
         let state = {
@@ -40,38 +29,6 @@ describe('addNewHosp reducer', () => {
     });
 });
 
-//more issues with DB requests
-// describe('formToggle reducer', () => {
-//     it('should return FORM_TOGGLE state', () => {
-//         let state = {
-//             hospitalizations: [{
-//                 isAform: true,
-//                 id: 1
-//             }]
-//         };
-//         state = reducer(state, formToggle(0));
-//         expect(state.hospitalizations[0].isAForm).toEqual(false);
-//     });
-// });
-
-// contains axios request
-// describe('updateItem reducer', () => {
-//     it('should return UPDATE_ITEM state', () => {
-//         let state = {
-//             hospitalizations: [{id: 1}]
-//         };
-//         const toUpdate = {
-//             conscious: false,
-//             condition: 'foo',
-//             latestUpdate: 'bar'
-//         };
-//         state = reducer(state, updateItem(toUpdate, 1));
-//         expect(state.hospitalizations[0].condition).toEqual(toUpdate.condition);
-//         expect(state.hospitalizations[0].conscious).toEqual(toUpdate.conscious);
-//         expect(state.hospitalizations[0].latestUpdate).toEqual(toUpdate.conscious);
-//     });
-// });
-
 describe('newHospToggle reducer', () => {
     it('should return NEW_HOSP_TOGGLE state', () => {
         let state = {showNewHosp: false}
@@ -79,8 +36,6 @@ describe('newHospToggle reducer', () => {
         expect(state.showNewHosp).toEqual(true);
     });
 });
-
-//createNewUser - just API request
 
 describe('getHospitalizations reducer', () => {
     it('should return GET_HOSPITALIZATIONS state', () => {

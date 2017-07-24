@@ -46,17 +46,9 @@ export class Nav extends React.Component {
 		});
 	}
 
-		//for backend facebook auth
-		facebookLogin(event) {
-		event.preventDefault();
-		axios.get('http://localhost:8080/users/auth')
-		.then(res => {
-			console.log(res);
-		})
-	}
-
 	render() {
 
+		//delete account link not visible on demo account
 		const deleteOrNot = this.props.currentUser.id === 1 ? undefined : <li onClick={e => this.deleteAccount(e)}><Link className="logout" to="/">Delete Account</Link></li> 
 
 		const loginFormOrAccountInfo = this.props.loginOrName === 'Login' ? 
@@ -77,6 +69,7 @@ export class Nav extends React.Component {
 		</ul>
 
 
+		//displays nav items based on whether user is logged in
 		const navState = this.props.loggedIn ? 
 			<ul className="nav navbar-nav">
 				<li>{this.props.dashboardOrSignup}</li>

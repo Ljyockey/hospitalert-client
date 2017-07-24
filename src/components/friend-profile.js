@@ -20,6 +20,7 @@ export class FriendProfile extends React.Component {
 
     render() {
         const formattedDbItems = (this.props.hosp.length > 0) ? (
+            //creates Collapsible without option to edit
             this.props.hosp.map((item) =>
             <Collapsible className="js-hospitalizations-item" key={item.id}
 					trigger={item.patient}>

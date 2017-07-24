@@ -39,6 +39,7 @@ export class Friends extends React.Component {
         axios.post(`${API_BASE_URL}/friends`, newFriend)
         .then(res => {
             const newSent = Object.assign({}, res.data, {
+                //adds name from search result to prevent API call
                 friendName: name
             })
             this.props.dispatch(newSentRequest(newSent))
@@ -66,6 +67,7 @@ export class Friends extends React.Component {
 
     render() {
         
+        //displays results of search - if any
         const searchResults = (this.props.friendsResults !== undefined) ?
         (this.props.friendsResults.length > 0) ?
         this.props.friendsResults.map((item => {
@@ -73,6 +75,7 @@ export class Friends extends React.Component {
         })) : <p>No results.</p>
         : undefined
 
+        //displays user's friend requests
         const pendingFriends = (this.props.pending.length > 0) ?
             (this.props.pending.map((item) => {
                 return <li key={item.id}>{item.userName} - 
@@ -83,15 +86,18 @@ export class Friends extends React.Component {
         :
             <p>No pending friend requests. If someone sends you a friend request, they'll appear here.</p>;
 
+        //displays pending friend requests that user has sent    
         const sentFriends = (this.props.sent.length > 0) ?
             (this.props.sent.map((item) => {
                 return <li key={item.id}>{item.friendName}</li>
             }))
         :
             <p>No unanswered requests. If you send someone a friend request, they'll appear here until it is approved or denied.</p>;
-
+        
+        //displays user's friends    
         const activeFriends = (this.props.active.length > 0) ?
             (this.props.active.map((item) => {
+                //displays name and ID opposite of the user
                 const targetName = item.friendName === this.props.userName ? item.userName : item.friendName;
                 const targetId = item.friend_id === this.props.userId ? item.user_id : item.friend_id;
                 return <li key={item.id} onClick={(e) => this.setProfile(e, targetId, targetName)}>
