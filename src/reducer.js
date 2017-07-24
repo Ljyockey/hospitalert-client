@@ -140,7 +140,7 @@ export default (state=initialState, action) => {
 
 			case 'NEW_SENT_REQUEST':
 				state = Object.assign({}, state, {
-					sentFriends: [...state.sentFriends, action.friend]
+					sentFriends: state.sentFriends.concat(action.friend)
 				})
 				return state;
 
@@ -153,7 +153,7 @@ export default (state=initialState, action) => {
 				})
 				state = Object.assign({}, state, {
 					pendingFriends: newPending,
-					activeFriends: [...state.activeFriends, newActiveFriend]
+					activeFriends: state.activeFriends.concat(newActiveFriend)
 				})
 				return state;
 

@@ -30,6 +30,10 @@
 	height: 100px;
 }
 
+.features .mdl-card__supporting-text {
+	 margin-top: 20px; 
+}
+
 .post > .mdl-card__title {
 	background: linear-gradient(
         rgba(0, 0, 0, 0.3),

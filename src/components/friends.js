@@ -29,7 +29,7 @@ export class Friends extends React.Component {
         })
     }
 
-    addFriend(event, friend) {
+    addFriend(event, friend, name) {
         event.preventDefault();
         const newFriend = {
             status: 'pending',
@@ -38,7 +38,10 @@ export class Friends extends React.Component {
         }
         axios.post(`${API_BASE_URL}/friends`, newFriend)
         .then(res => {
-            this.props.dispatch(newSentRequest(res.data))
+            const newSent = Object.assign({}, res.data, {
+                friendName: name
+            })
+            this.props.dispatch(newSentRequest(newSent))
         })
     }
 
@@ -66,7 +69,7 @@ export class Friends extends React.Component {
         const searchResults = (this.props.friendsResults !== undefined) ?
         (this.props.friendsResults.length > 0) ?
         this.props.friendsResults.map((item => {
-            return <li key={item.id}>{item.name} - <a onClick={e => this.addFriend(e, item.id)}>Add Friend</a></li>
+            return <li key={item.id}>{item.name} - <a onClick={e => this.addFriend(e, item.id, item.name)}>Add Friend</a></li>
         })) : <p>No results.</p>
         : undefined
 
@@ -116,7 +119,7 @@ export class Friends extends React.Component {
                         <div className="mdl-card__supporting-text">
                             <form className="search-friends-form" onSubmit={e => this.searchFriends(e)}>
                                 <label htmlFor="search-friends">Find Friends - Type Name</label>
-                                <input type="text" placeholder="Joe Smith" ref={input =>
+                                <input type="text" placeholder="ex. Jane Smith" ref={input =>
                                     this.search = input}/>
                                 <input type="submit" value="Search" />
                             </form>
