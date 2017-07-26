@@ -7,7 +7,6 @@ const initialState = {
 	currentUser: {},
 	showNewHosp: false,
 	hospitalizations: [],
-	friendsSearchResults: [],
 	pendingFriends: [],
 	sentFriends: [],
 	activeFriends: [],
