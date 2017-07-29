@@ -115,7 +115,7 @@ export class Nav extends React.Component {
 						<span className="icon-bar"></span>
 						<span className="icon-bar"></span>
 					</button>
-					<Link className="navbar-brand" to="/">HospitAlert</Link>
+					{this.props.homeOrTop}
 				</div>
 				<div className="collapse navbar-collapse" id="landing-nav">
 					{navState}
@@ -127,6 +127,7 @@ export class Nav extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
+	homeOrTop: state.isLoggedIn ? <Link className="navbar-brand" to="/">HospitAlert</Link> : <a className="navbar-brand" href="#home">HospitAlert</a>,
 	dashboardOrSignup: state.isLoggedIn ? <Link to="/dashboard">Dashboard</Link> : <a href="#signup-form">Signup</a>,
 	friendsOrAbout: state.isLoggedIn ? <Link to="/friends">Friends</Link> : <a href="#about">About</a>,
 	loginOrName: state.isLoggedIn ? state.currentUser.name : 'Login',

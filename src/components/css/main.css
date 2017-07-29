@@ -136,6 +136,13 @@ footer ul {
 
 footer a {
 	color: white;
+}
+
+#footer-links-name {
+	text-decoration: underline;
+}
+
+.footer-links-social {
 	margin-left: 10px;
 }
 
@@ -153,7 +160,7 @@ footer a {
 	.move {
 		bottom: 0;
 	}
-	footer a {
+	.footer-links-social {
 		margin-left: 20px;
 	}
 }

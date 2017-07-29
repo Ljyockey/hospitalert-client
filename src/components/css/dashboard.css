@@ -18,8 +18,21 @@ h2, .create-new-container {
 	padding: 10px 0;
 }
 
+.Collapsible__trigger:hover {
+	cursor: pointer;
+}
+
 .Collapsible__contentInner, .item-edit button {
 	margin-bottom: 20px;
+}
+
+.button-space {
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.create-new-container {
+	margin-bottom: 70px;
 }
 
 .create-new {

@@ -80,8 +80,8 @@ export class Dashboard extends React.Component {
 							<option value="yes">yes</option>
 							<option value="no">no</option>
 						</select>
-						<button type="submit">Submit</button>
-						<button onClick={e => this.formToggleHandler(e, item.id)} className="cancel">Cancel</button>
+						<button type="submit" className="button-space">Submit</button>
+						<button onClick={e => this.formToggleHandler(e, item.id)} className="cancel button-space">Cancel</button>
 					</form>
 				</div>)
 			:
@@ -94,8 +94,8 @@ export class Dashboard extends React.Component {
 					<p>{item.condition}</p>
 					<h4>Conscious?</h4>
 					<p>{item.conscious ? 'yes' : 'no'}</p>
-					<button onClick={e => this.formToggleHandler(e, item.id)} className="edit">Edit</button>
-					<button onClick={e => this.removeItem(e, item.id)} className="delete">Delete</button>
+					<button onClick={e => this.formToggleHandler(e, item.id)} className="edit button-space">Edit</button>
+					<button onClick={e => this.removeItem(e, item.id)} className="delete button-space">Delete</button>
 				</Collapsible>)
 			
 		)):

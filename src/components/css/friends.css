@@ -32,6 +32,10 @@ label, input[type=text] {
 	height: 300px;
 }
 
+.mdl-card__supporting-text ul {
+    padding-left: 0;
+}
+
 .delete-friend {
     color: red;
 }

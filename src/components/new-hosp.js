@@ -53,8 +53,8 @@ export class NewHosp extends React.Component {
             ref={input => this.conscious = input
             }/> Conscious?<br />
           
-            <button type="submit">Submit</button>
-          <button type="reset" onClick={e => this.resetForm(e)}>Reset</button>
+            <button type="submit" className="button-space">Submit</button>
+          <button type="reset" className="button-space" onClick={e => this.resetForm(e)}>Reset</button>
           
         </form>
       </section>

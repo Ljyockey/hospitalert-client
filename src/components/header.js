@@ -6,7 +6,7 @@ import './css/header.css'
 export class Header extends React.Component {
 	render() {
 		return (
-				<header className="landing">
+				<header className="landing" id="home">
 					<div className="landing-text">
 						<h1>HospitAlert</h1>
 						<p>Stay up-to-date when the unthinkable happens.

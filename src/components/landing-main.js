@@ -33,7 +33,7 @@ export class LandingMain extends React.Component {
 								</div>
 							</div>
 
-							<div className="col-md-3"></div>
+							<div className="col-md-3" id="blank"></div>
 
 							<div className="col-md-3 status mdl-card mdl-shadow--6dp">
 								<div className="mdl-card__title mdl-card--expand">
