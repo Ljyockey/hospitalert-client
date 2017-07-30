@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import Header from './header';
 import LandingMain from './landing-main';
 
-import './css/landing.css';
+import './style/landing.css';
 
 const axios = require('axios');
 const {API_BASE_URL} = require('../config');

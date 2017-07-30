@@ -6,6 +6,10 @@ h2, .create-new-container {
 	text-align: center;
 }
 
+.mdl-card__supporting-text {
+	padding-bottom: 15px;
+}
+
 .hospitalizations-header {
 	margin: 50px auto;
 }

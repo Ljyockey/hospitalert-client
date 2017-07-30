@@ -101,7 +101,8 @@ export default (state=initialState, action) => {
 
 			case 'SEARCH_FRIENDS':
 				state = Object.assign({}, state, {
-					friendsSearchResults: action.results
+					friendsSearchResults: action.results,
+					friendsSearchParams: action.search
 				})
 				return state;
 

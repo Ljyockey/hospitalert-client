@@ -58,3 +58,4 @@ Then open [`localhost:3000`](http://localhost:8080) in a browser.
 	<li>React</li>
 </ul>
 <p>Soon, users who are unable or unwilling to create an account with Facebook will be able to create an account with their email address.</p>
+<p>This is an open-source project. Contributions are welcome and encouraged. :) </p>

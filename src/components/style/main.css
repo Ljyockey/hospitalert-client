@@ -51,7 +51,6 @@ section {
 .mdl-card__supporting-text {
 	margin-left: auto;
 	margin-right: auto;
-	padding: 0;
 }
 
 img {
@@ -149,6 +148,7 @@ footer a {
 @media only screen and (min-width: 640px) {
 	.about-wide, .dashboard-wide {
 		width: 80%;
+		min-height: 100px;
 	}
 	.col-md-3 {
 		margin-left: 60px;

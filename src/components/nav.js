@@ -5,7 +5,7 @@ import FacebookLogin from 'react-facebook-login';
 
 import {userLogin, userLogout, removeUser} from '../actions';
 
-import './css/nav.css';
+import './style/nav.css';
 
 const axios = require('axios');
 const {API_BASE_URL, APP_ID} = require('../config');
@@ -55,10 +55,10 @@ export class Nav extends React.Component {
 		<form className="login-form dropdown-menu" onSubmit={e => this.checkCredentials(e)}>
 			<label htmlFor="email">Email</label>
 			<input type="email" id="email" ref={input =>
-			this.email = input} />
+				this.email = input} />
 			<label htmlFor="password">Password</label>
 			<input type="password" id="password" ref={input =>
-			this.password = input} />
+				this.password = input} />
 			<input type="submit" value="Submit" />
 			<a href="#signup-form">Signup</a>
 		</form>

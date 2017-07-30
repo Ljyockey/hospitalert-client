@@ -6,7 +6,7 @@ import NewHosp from './new-hosp';
 
 import {deleteHospitalization, formToggle, updateItem, newHospToggle, getHospitalizations} from '../actions';
 
-import './css/dashboard.css';
+import './style/dashboard.css';
 
 const axios = require('axios');
 const {API_BASE_URL} = require('../config');
@@ -106,8 +106,8 @@ export class Dashboard extends React.Component {
 			<div className="dashboard-main">
 				<header className="dashboard-header">
 					<div className="dashboard-wide mdl-card mdl-shadow--6dp">
-						<div className="mdl-card__title mdl-card--expand">
-							<h1 className="mdl-card__title-text">Dashboard</h1>
+						<div className="mdl-card__title">
+							<h1 className="mdl-card__title-text">Hello, {this.props.userName}.</h1>
 						</div>
 						<div className="mdl-card__supporting-text">
 							<p>View hositalizations and update the status. Your friends will be able to see the updated statuses.</p>
@@ -134,7 +134,8 @@ const mapStateToProps = (state) => ({
 	dbItem: state.hospitalizations,
   	showNewHosp: state.showNewHosp,
 	createOrHide: state.showNewHosp ? 'hide' : 'Create New',
-	userId: state.currentUser.id
+	userId: state.currentUser.id,
+	userName: state.currentUser.name
 });
 
 export default connect(mapStateToProps)(Dashboard);

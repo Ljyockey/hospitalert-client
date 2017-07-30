@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {searchFriends, sortFriends, newSentRequest, acceptFriend, deleteFriend, setProfile} from '../actions';
 
-import './css/friends.css';
+import './style/friends.css';
 
 const axios = require('axios');
 const {API_BASE_URL} = require('../config');
@@ -25,7 +25,7 @@ export class Friends extends React.Component {
         this.search.value = '';
         axios.get(`${API_BASE_URL}/users/${searchParams}`)
         .then(res => {
-            this.props.dispatch(searchFriends(res.data.users))
+            this.props.dispatch(searchFriends(res.data.users, searchParams))
         })
     }
 
@@ -72,7 +72,7 @@ export class Friends extends React.Component {
         (this.props.friendsResults.length > 0) ?
         this.props.friendsResults.map((item => {
             return <li key={item.id}>{item.name} - <a onClick={e => this.addFriend(e, item.id, item.name)}>Add Friend</a></li>
-        })) : <p>No results.</p>
+        })) : <p>No results for {this.props.search}.</p>
         : undefined
 
         //displays user's friend requests
@@ -188,7 +188,8 @@ const mapStateToProps = (state) => ({
     sent: state.sentFriends,
     active: state.activeFriends,
     userId: state.currentUser.id,
-    userName: state.currentUser.name
+    userName: state.currentUser.name,
+    search: state.friendsSearchParams
 });
 
 export default connect(mapStateToProps)(Friends);
