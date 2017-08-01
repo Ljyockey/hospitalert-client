@@ -23,7 +23,8 @@ export class LandingMain extends React.Component {
 
 					<div className="container">
 						<div className="row">
-							<div className="col-md-3 post mdl-card mdl-shadow--6dp">
+							 <div className="col-md-2"></div> 
+							<div className="col-md-4 post mdl-card mdl-shadow--6dp">
 								 <div className="mdl-card__title mdl-card--expand"> 
 									<h3 className="mdl-card__title-text">Add an Event</h3>
 								</div>
@@ -33,9 +34,7 @@ export class LandingMain extends React.Component {
 								</div>
 							</div>
 
-							<div className="col-md-3" id="blank"></div>
-
-							<div className="col-md-3 status mdl-card mdl-shadow--6dp">
+							<div className="col-md-4 status mdl-card mdl-shadow--6dp">
 								<div className="mdl-card__title mdl-card--expand">
 									<h3 className="mdl-card__title-text">Update Status</h3>
 								</div>
@@ -44,6 +43,7 @@ export class LandingMain extends React.Component {
 										to view the updates.</p>
 								</div>
 							</div>
+							<div className="col-md-2"></div>
 						</div>
 					</div>
 				</section>

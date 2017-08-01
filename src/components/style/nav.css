@@ -23,8 +23,12 @@ nav li {
 	rgba(0, 0, 0, 0.12) 0px 1px 8px; 
 }
 
-.navrbar-nav {
-	margin-bottom: 0;
+.container-fluid, .in {
+	padding-right: 0;
+}
+
+.navbar-nav {
+	width: 100%;
 }
 
 .navbar-collapse {
@@ -100,4 +104,13 @@ nav li {
 .logout:focus {
 	color: #f0f0f0 !important;
 	background-color: #5c3333 !important;
+}
+
+@media only screen and (min-width: 768px) {
+	.navbar-nav {
+		width: 80%;
+	}
+	.right {
+		float: right !important;
+	}
 }

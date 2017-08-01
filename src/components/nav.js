@@ -14,8 +14,10 @@ export class Nav extends React.Component {
 	
 	responseFacebook(response) {
 		if(!('status' in response)) {
+			//dispatch loading action
 			axios.post(`${API_BASE_URL}/users/facebook`, response)
 			.then(user => {
+				//add something to remove the loading
 				this.props.dispatch(userLogin(user.data));
 			});
 		}
@@ -27,8 +29,10 @@ export class Nav extends React.Component {
 			username: 'yockey.alerts@gmail.com',
 			password: 'Password1'
 		};
+		//dispatch loading action
 		axios.get(`${API_BASE_URL}/users/dashboard`, {auth: credentials})
 		.then(res => {
+			//add something to remove the loading
 			this.props.dispatch(userLogin(res.data));
 			});
 	}
@@ -74,7 +78,7 @@ export class Nav extends React.Component {
 			<ul className="nav navbar-nav">
 				<li>{this.props.dashboardOrSignup}</li>
 				<li>{this.props.friendsOrAbout}</li>
-				<li className="dropdown">
+				<li className="dropdown right">
 					<a className="dropdown-toggle" data-toggle="dropdown" role="button" 
 						aria-haspopup="true" aria-expanded="false">{this.props.loginOrName} 
 						<span className="caret"></span></a>

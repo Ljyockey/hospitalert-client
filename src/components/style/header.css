@@ -1,3 +1,16 @@
 .landing {
     margin-top: 0;
 }
+
+.fb-button {
+	text-align: center;
+	padding: 10px;
+    display: inline-block;
+    color: #00b1bd;
+
+}
+
+.fb-button:hover, 
+.fb-button:focus {
+    text-decoration: underline;
+}

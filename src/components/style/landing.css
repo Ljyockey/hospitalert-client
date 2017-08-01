@@ -14,6 +14,11 @@
 	padding: 15px 15px;
 }
 
+.features {
+	margin-left: auto;
+	margin-right: auto;
+}
+
 .features h2 {
 	margin-bottom: 0;
 }
@@ -37,6 +42,10 @@
 #blank {
 	box-shadow: none;
 	background-color: white;
+}
+
+.post {
+	margin-right: 25px;
 }
 
 .post > .mdl-card__title {
